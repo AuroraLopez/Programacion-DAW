@@ -7,7 +7,10 @@ public class App {
     //     System.out.println("El area de un cuadrado es: " +(altura*diametro));
     // }
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        // el print6 normal te los imprime en la misma linea y el println hace un salto de linea
+        // System.out.println("Hello, World!");
+        // System.out.println(null);
+        // System.err.println("un bonito error");
         // char c=98;
         // System.out.println(c); //tabla ASCII
         // int a='a';
