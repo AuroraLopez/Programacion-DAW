@@ -8,7 +8,7 @@ public class App {
     // }
     public static void main(String[] args) throws Exception {
         // el print6 normal te los imprime en la misma linea y el println hace un salto de linea
-        // System.out.println("Hello, World!");
+            System.out.println("Hello, World!");
         // System.out.println(null);
         // System.err.println("un bonito error");
         // char c=98;
