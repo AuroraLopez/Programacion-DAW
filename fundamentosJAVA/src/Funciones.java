@@ -20,7 +20,7 @@ class Funciones {
         // Incremento ++, Decremento --
         // No es lo mismo variable++(coge el valor y lo incrementa) que ++variable(incrementa el valor y la usa)
         int valor=1;
-        valor=valor--;
+        valor--;
         System.out.println(valor);
         valor=valor-1;
         System.out.println(valor);
