@@ -1,4 +1,4 @@
-public class App {
+public class Actividad1 {
     public static void main(String[] args) throws Exception {
         // Actividad tema 2 diapositiva 9
         // Realiza un programa que genera 2 números y nos diga el cociente, la media, la potencia y la raíz cuadrada. Usa tipos adecuados
