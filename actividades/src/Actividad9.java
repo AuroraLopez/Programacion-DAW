@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Actividad9 {
     public static void main(String[] args) {
+        // EJERCICIO 5 de la unidad 2
         int intentos=0;
         int min=1;
         int max=100;

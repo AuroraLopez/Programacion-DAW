@@ -45,5 +45,6 @@ public class bucles {
         System.out.println("Escribe un mensaje entre 1 y 5");
         numero=teclado.nextInt();
         }while(numero<1||numero>5);
+        teclado.close();
 }
 }

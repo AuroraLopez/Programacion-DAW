@@ -31,7 +31,7 @@ class Funciones {
         // Operación de asignación(opera-asigna)
         int num11=3;
         int num12=4;
-        num11+=num12;
+        num11=num11+num12;
         System.out.println(num12);
 
         // Operador ternario(? va a comprobar la parte anterior y si se cumple hace lo siguiente(if else))

@@ -1,5 +1,6 @@
 public class Actividad5 {
     public static void main(String[] args) {
+        // // EJERCICIO 1 de la unidad 2
         //Desarrolla un programa que muestre los números entre 50 y 200 que son múltiplos de 2 y 3
         /*
          * PSEUDOCODIGO

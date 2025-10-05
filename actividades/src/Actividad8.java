@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Actividad8 {
     public static void main(String[] args) {
+        // EJERCICIO 4 de la unidad 2
         //4)Desarrolla un programa que calcule la suma, media, número de alumnos y cuántos son mayores de edad
         int suma=0; int contador=0; int mayor=0;
         Scanner teclado=new Scanner(System.in);

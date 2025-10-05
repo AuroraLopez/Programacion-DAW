@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Actividad6 {
     public static void main(String[] args) {
+        // EJERCICIO 2 de la unidad 2
         // Desarrolla un programa que calcule el factorial del número introducido
         /*
          * INICIO

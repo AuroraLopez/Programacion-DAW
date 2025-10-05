@@ -2,8 +2,9 @@ import java.util.Scanner;
 
 public class Actividad10 {
     public static void main(String[] args) {
+        // EJERCICIO 6 de la unidad 2
         // Desarrolla un programa que simule una calculadora según la opción introducida y que pida los operandos hasta que introduces -1
-        int eleccion; int num; int num2; int suma; int resta; int multiplicar; int dividir;
+        int eleccion; int num; int num2;
         Scanner teclado= new Scanner(System.in);
         do{
             System.out.println("Introduce que elección desea");
@@ -21,7 +22,23 @@ public class Actividad10 {
                     System.out.println("La suma es "+(num+num2));
                     break;
                 case 2:
-                                
+                    System.out.println("Introduxca dos números");
+                    num=teclado.nextInt();
+                    num2=teclado.nextInt();
+                    System.out.println("La resta es "+(num-num2));
+                    break;
+                case 3:
+                    System.out.println("Introduxca dos números");
+                    num=teclado.nextInt();
+                    num2=teclado.nextInt();
+                    System.out.println("La multiplicación es "+(num*num2));
+                    break;
+                case 4:
+                    System.out.println("Introduxca dos números");
+                    num=teclado.nextInt();
+                    num2=teclado.nextInt();
+                    System.out.println("La división es "+(num/num2));
+                    break;
                 default:
                     break;
             }
