@@ -1,4 +1,4 @@
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class bucles {
     public static void main(String[] args) {
@@ -39,12 +39,22 @@ public class bucles {
         //     j++;
         // }
 
-        Scanner teclado = new Scanner(System.in);
-        int numero=0;
-        do{
-        System.out.println("Escribe un mensaje entre 1 y 5");
-        numero=teclado.nextInt();
-        }while(numero<1||numero>5);
-        teclado.close();
+        // Scanner teclado = new Scanner(System.in);
+        // int numero=0;
+        // do{
+        // System.out.println("Escribe un mensaje entre 1 y 5");
+        // numero=teclado.nextInt();
+        // }while(numero<1||numero>5);
+        // teclado.close();
+
+        //Bucles anidados
+        for(int i=1; i<=4;i++){
+            for(int j=4;j>=i;j--){
+                if (i%2==0) {
+                    System.out.print("*");
+                }
+            }
+            System.out.println("");
+        }
 }
 }
