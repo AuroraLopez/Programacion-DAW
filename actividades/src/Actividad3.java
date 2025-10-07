@@ -2,8 +2,9 @@ import java.util.Scanner;
 
 public class Actividad3 {
     public static void main(String[] args) {
-       //Haz un programa que nos pide una nota y nos indica la calificación(sobresaliente, notable, bien, aprobado, suspenso, nota incorrecta).
-       // Con if else
+        //Unidad 2 diapositiva 14
+        //Haz un programa que nos pide una nota y nos indica la calificación(sobresaliente, notable, bien, aprobado, suspenso, nota incorrecta).
+        // Con if else
        Scanner teclado= new Scanner(System.in);
        //Leer el numero 
        System.out.println("Introduce una nota");
