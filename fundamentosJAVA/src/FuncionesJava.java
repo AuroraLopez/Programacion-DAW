@@ -12,7 +12,7 @@ public class FuncionesJava {//Si le quitamos el static tendremos que crear un ob
     public static void escribir3saludos() {
         System.out.println("Hola Aurora");
         System.out.println("Hola 2");
-        System.out.println("Hola 3");
+        System.out.println("Hola 3"); 
     }
 
     //Función que devuelve el valor máximo de 2 números
