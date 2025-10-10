@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Actividad2 {
+    //Primera actividad diapositiva 14
+    //Haz el programa JAVA del siguiente diagrama de flujo
      public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
         // Introducimos los valores por teclado

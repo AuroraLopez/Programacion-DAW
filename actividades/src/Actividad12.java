@@ -1,6 +1,6 @@
 public class Actividad12 {
     public static void main(String[] args) {
-        // EJERCICIO DIAPOSITIVA 19 UNIDAD 2
+        // EJERCICIO DIAPOSITIVA 19
         // Desarrolla el programa que muestra las tablas de multiplicar del 1 al 10.
         /*
          * PSEUDOCODIGO

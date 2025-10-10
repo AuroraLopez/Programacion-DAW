@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Actividad7 {
     public static void main(String[] args) {
-        // EJERCICIO 3 de la unidad 2
+        // EJERCICIO 3 DIAPOSITIVA 16
         //Desarrolla un programa que muestre la edad máxima y mínima de un grupo de alumnos que se introduzca hasta escribir -1
         int max=0; int min=1000000; int contador=0;
         Scanner teclado=new Scanner(System.in);

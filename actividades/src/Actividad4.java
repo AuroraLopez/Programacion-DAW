@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Actividad4 {
     public static void main(String[] args) {
+        // Tercera actividad diapositiva 14
         /*
          * Haz un programa que solicita el día, mes y año y comprueba si es válido.
          * Para el año hay que ver si el 29 es válido por ser bisiesto. Un año es bisiesto si: (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)

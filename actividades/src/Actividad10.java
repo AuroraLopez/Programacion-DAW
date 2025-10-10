@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Actividad10 {
     public static void main(String[] args) {
-        // EJERCICIO 6 de la unidad 2
+        // EJERCICIO 6 DIAPOSITIVA 17
         // Desarrolla un programa que simule una calculadora según la opción introducida y que pida los operandos hasta que introduces -1
         int eleccion; int num; int num2;
         Scanner teclado= new Scanner(System.in);
