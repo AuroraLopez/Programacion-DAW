@@ -11,7 +11,9 @@ public class Actividad5 {
          *      IMPRIME RESULTADO
          * FIN
         */
+        // Bucle que vaya usando todos los numeros en ese rango
         for(int num=50;num<=200;num++){
+            // Condición para saber si son múltiplos
             if (num%2==0 && num%3==0){
                 System.out.println(num);
             }
