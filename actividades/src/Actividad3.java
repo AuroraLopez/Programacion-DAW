@@ -13,16 +13,16 @@ public class Actividad3 {
         if (nota<5) {
             System.out.println("Está suspenso");
         }
-        else if(nota>=5 || nota<6){
+        else if(nota>=5 && nota<6){
             System.out.println("Está aprobado");
         }
-        else if(nota>=6 || nota<7){
+        else if(nota>=6 && nota<=7){
             System.out.println("Está bien");
         }
-        else if(nota>=8 || nota<9){
+        else if(nota>=8 && nota<9){
             System.out.println("Está notable");
         }
-        else if(nota>=9 || nota<=10){
+        else if(nota>=9 && nota<=10){
             System.out.println("Está sobresaliente");
         }
         else{
