@@ -6,8 +6,8 @@ public class Actividad12 {
          * PSEUDOCODIGO
          * INICIO PROGRAMA
          *      BUCLE PARA NUMEROS QUE MULTIPLICAR
-         *      BUCLE PARA MULTIPLICAR UN NUMERO 10 VECES
-         *      ESCRIBE RESULTADOS
+         *          BUCLE PARA MULTIPLICAR UN NUMERO 10 VECES
+         *          ESCRIBE RESULTADOS
          * FIN
          */
 
