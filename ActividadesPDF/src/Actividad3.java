@@ -4,9 +4,11 @@ public class Actividad3 {
     public static void main(String[] args) {
         //  Escribe un programa que nos diga el signo del zodiaco a partir del día y el mes de nacimiento. 
         Scanner teclado= new Scanner(System.in);
+        // Leemos las varibales
         System.out.println("Introduce dia mes(numeros)");
         int dia = teclado.nextInt();
         int mes = teclado.nextInt();
+        // Condiciones para cada digno zodiacal
         switch (mes) {
             case 1:
                 if (dia>0 && dia<20) {

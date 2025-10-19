@@ -26,14 +26,18 @@ public class Actividad2 {
          *      IMPRIME "El sueldo semanal que le responde es de SALARIO"
          * FIN   
          */
+
+         // Leemos las variables
         Scanner teclado=new Scanner(System.in);
         System.out.println("Por favor, introduzca el número de horas trabajadas durante la semana: ");
         int salario;
         int horas=teclado.nextInt();
+        // Condición para si son menos de 40 horas
         if (horas<=40) {
             salario=horas*12;
             System.out.println("El sueldo semanal que le corresponde es de: "+salario+"euros");
         }
+        // Condición para las horas extras
         else if (horas>40) {
             int horas_extras = horas-40;
             salario=(40*12)+(horas_extras*16);

@@ -25,9 +25,11 @@ public class Actividad1 {
         if (hora>=6 || hora<=12) {
             System.out.println("Buenos días");
         }
+        // Segundo if para el buenas tardes
         else if (hora>=13 || hora<=20) {
             System.out.println("Buenas tardes");
         }
+        // Tercer if para el buenas noches
         else{
             System.out.println("Buenas noches");
         }
