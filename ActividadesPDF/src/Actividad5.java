@@ -5,8 +5,11 @@ public class Actividad5 {
         // Escribe un programa que muestre tu horario de clase. Si le pides un día de la semana (1 a 5) te 
         // indicará las materias de ese día, si le indicas 6 devolverá el horario completo (hazle formato) y con 
         // 7 se cerrará el programa.
+
+        // Leemos la variable
         Scanner teclado = new Scanner(System.in);
             int eleccion; 
+            // Bucle para el menu
             do{
             System.out.println("Introduce de que dia desea ver la asignaturas");
             System.out.println("1. Lunes");
@@ -17,6 +20,8 @@ public class Actividad5 {
             System.out.println("6. Horario completo");
             System.out.println("Para salir pulse 7");
             eleccion=teclado.nextInt();
+
+            // Elecciones para cada opcion
             switch (eleccion) {
                 case 1:
                     System.out.println("********Lunes********");

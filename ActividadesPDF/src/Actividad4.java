@@ -21,16 +21,21 @@ public class Actividad4 {
         double nota2=teclado.nextDouble();
         double media=(nota1+nota2)/2;
         String recuperacion;
+        // Condición para cuando apruebas
         if (media>=5 && media<=10) {
             System.out.println("Estás aprobado y tu media es de :"+media);
         }
+        // Condeición para cuando suspendes
         else{
+            // Lee nota de recuperación
             System.out.println("Estás supenso, ¿Cuál ha sido la nota de recuperación? (apto/noapto)");
             recuperacion=teclado.next();
+            // Condición por si apruebas la recuperación
             if (recuperacion.equals("apto")) {
                 media=5;
                 System.out.println("Estás aprobado con un 5");                
             }
+            // Condició por si suspendes
             else if(recuperacion.equals("noapto")){
                 System.out.println("Estás suspenso con un "+media);
             }

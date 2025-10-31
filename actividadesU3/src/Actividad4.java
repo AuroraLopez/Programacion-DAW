@@ -2,7 +2,7 @@ public class Actividad4 {
     public static void main(String[] args){
         int vector[] = {2,3,5,7,8,2};
         int contador=0;
-        for(int i=0; i>vector.length;i++){
+        for(int i=0; i<vector.length;i++){
             if (vector[i]==2) contador++;
         }
         int vector2[]=new int[vector.length-contador];
@@ -10,6 +10,8 @@ public class Actividad4 {
             if(vector[i]!=2){
                 vector2[i]=vector[i];
             }
+            System.out.print(vector[i]+" ");
         }
+        System.out.println();
     }
 }

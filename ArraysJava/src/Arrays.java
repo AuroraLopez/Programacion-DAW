@@ -40,5 +40,21 @@ public class Arrays {
         calificaciones2[3]=5;
         System.out.println(calificaciones2[3]);
         System.out.println(calificaciones2[1]);
-    }    
+
+        // Recorrer un vector
+        int[] vector={7,5,4,3};
+        for(int i=0;i<vector.length;i++){
+            System.out.print(vector[i]+" ");
+        }
+        System.out.println();
+
+        // Recorrerlo al reves
+        for(int i=vector.length-1;i>=0;i--){
+            System.out.print(vector[i]+" ");
+        }
+        System.out.println();
+
+        // Practica recorrer matrices
+  
+    }
 }
