@@ -1,37 +1,65 @@
-import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Actividad1 {
+    public static int[] push(int [] arraypila, int numero){
+        // Creamos la copia del array original
+        int copiaarray [] = new int[arraypila.length+1];
+        // Copiamos los digitos del array original para coparlos a la copia
+        for(int i=0;i<arraypila.length;i++){
+            copiaarray[i]=arraypila[i];
+        }
+        System.out.println();
+        
+        // Agregar digito
+        copiaarray[copiaarray.length - 1] = numero;
+
+        // Mostramos el arraynuevo
+        System.out.println("Array añadiendo "+numero+ " al final");
+        for(int i=0;i<copiaarray.length;i++){
+            System.out.print(copiaarray[i]+ " ");
+        }
+        System.out.println();
+        return copiaarray;
+
+    }
+    public static int[] pop(int [] copiaarray){
+        int eliminaultimo [] = new int[copiaarray.length-1];
+        for(int i=0;i<copiaarray.length-1;i++){
+            eliminaultimo[i]=copiaarray[i];
+        }
+        System.out.println();
+        
+        // Mostramos el arraynuevo
+        System.out.println("Array eliminando el último");
+        for(int i=0;i<eliminaultimo.length;i++){
+            System.out.print(eliminaultimo[i]+ " ");
+        }
+        System.out.println();
+        return eliminaultimo;
+
+    }
+
     public static void main(String[] args) throws Exception {
         /*
-         * Escribe un programa que imprima buenos días, buenas tardes y buenas noches según la hora 
-         * actual. Se utilizarán los tramos de 6 a 12, de 13 a 20 y de 21 a 5. (usa LocalDateTime)
+         * Escribe un programa que simule el comportamiento de una pila creando una función push y otra 
+         * pop. La función push inserta un número al final del vector y devuelve el nuevo array. La función
+         * pop elimina el último número del array y lo devuelve.
          */
-        /*
-         * PSEUDOCODIGO
-         * INICIO
-         *   LEER HORA
-         *      SI HORA ES DE 6 A 12
-         *          IMPRIME BUENOS DIAS
-         *      SI HORA ES DE 13 A 20 
-         *          IMPRIME BUENAS TARDES
-         *      SI HORA ES DE 21 A 5
-         *          IMPRIME BUENAS NOCHES
-         * FIN 
-         */
-        LocalDateTime hoy = LocalDateTime.now();
-        int hora = hoy.getHour();
-        // Variable hora
-        //  Primer if para el buenos dias
-        if (hora>=6 || hora<=12) {
-            System.out.println("Buenos días");
+        int arraypila[]={1,2,3,5};
+        int numero;
+        Scanner teclado=new Scanner(System.in);
+        System.out.println();
+        System.out.println("¿Que número desea añadir al array?");
+        numero=teclado.nextInt();
+        System.out.println("Antiguo array");
+        for(int i=0;i<arraypila.length;i++){
+            System.out.print(arraypila[i]+ " ");
         }
-        // Segundo if para el buenas tardes
-        else if (hora>=13 || hora<=20) {
-            System.out.println("Buenas tardes");
-        }
-        // Tercer if para el buenas noches
-        else{
-            System.out.println("Buenas noches");
-        }
+        System.out.println();
+
+        pop(push(arraypila,numero));
+
+        teclado.close();
+
     }
 }

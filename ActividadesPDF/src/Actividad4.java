@@ -3,46 +3,45 @@ import java.util.Scanner;
 public class Actividad4 {
     public static void main(String[] args) {
         /*
-         * Calcula la nota de un trimestre de la asignatura Programación. El programa pedirá las dos 
-         * notas que ha sacado el alumno en los dos primeros controles. Si la media de los dos controles da un 
-         * número mayor o igual a 5, el alumno está aprobado y se mostrará la media. En caso de que la media 
-         * sea un número menor que 5, el alumno habrá tenido que hacer el examen de recuperación que se 
-         * califica como apto o no apto, por tanto se debe preguntar al usuario ¿Cuál ha sido el resultado de la 
-         * recuperación? (apto/no apto). Si el resultado de la recuperación es apto, la nota será un 5; en caso 
-         * contrario, se mantiene la nota media anterior.
+         * Escribir un programa que valide el décimo de la bonoloto. Tendrás un array
+         * con los valores correctos y otro el que introduzca el usuario. 
+         * El programa verificará cuántos aciertos ha tenido.
          */
-        Scanner teclado= new Scanner(System.in);
-        // Para introducir decimal en la terminal es con la , no con .
-        // Pedimos la primera nota
-        System.out.println("Introduce la primera nota");
-        double nota1=teclado.nextDouble();
-        // Pedimos la segunda nota
-        System.out.println("Introduce la segunda nota");
-        double nota2=teclado.nextDouble();
-        double media=(nota1+nota2)/2;
-        String recuperacion;
-        // Condición para cuando apruebas
-        if (media>=5 && media<=10) {
-            System.out.println("Estás aprobado y tu media es de :"+media);
+        Scanner teclado = new Scanner(System.in);
+        int numerosbonoloto[] = { 4, 12, 25, 37, 44, 49 };
+        int contadoraciertos = 0;
+
+        // Añadimos numeros a una array
+        int arrayusuario[] = new int[6];
+        for (int i = 0; i < arrayusuario.length; i++) {
+            System.out.println("¿Qué números tienen tu bonoloto?");
+            int numero = teclado.nextInt();
+            arrayusuario[i] = numero;
         }
-        // Condeición para cuando suspendes
-        else{
-            // Lee nota de recuperación
-            System.out.println("Estás supenso, ¿Cuál ha sido la nota de recuperación? (apto/noapto)");
-            recuperacion=teclado.next();
-            // Condición por si apruebas la recuperación
-            if (recuperacion.equals("apto")) {
-                media=5;
-                System.out.println("Estás aprobado con un 5");                
-            }
-            // Condició por si suspendes
-            else if(recuperacion.equals("noapto")){
-                System.out.println("Estás suspenso con un "+media);
-            }
-            else{
-                System.out.println("Valor incorrecto");
+
+        // Mostramos el array del bonoloto
+        System.out.println("Bonoloto ganador para la comprobacion");
+        for (int i = 0; i < numerosbonoloto.length; i++) {
+            System.out.print(numerosbonoloto[i] + " ");
+        }
+        System.out.println();
+
+        // Mostramos el array de usuario
+        System.out.println("Bonoloto del usuario");
+        for (int i = 0; i < arrayusuario.length; i++) {
+            System.out.print(arrayusuario[i] + " ");
+        }
+
+        // Comprobamos los digitos a ver si coinciden
+        for (int i = 0; i < numerosbonoloto.length; i++) {
+            for (int j = 0; j < arrayusuario.length; j++) {
+                if (numerosbonoloto[i] == arrayusuario[j]) {
+                    contadoraciertos++;
+                }
             }
         }
+        // Mostramos los aciertos que hemos tenido
+        System.out.println("Ha tenido " + contadoraciertos + " aciertos");
         teclado.close();
     }
 }
