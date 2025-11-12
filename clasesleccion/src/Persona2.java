@@ -18,6 +18,15 @@ public class Persona2 {
         this.pareja = null;
     }
 
+    public Persona2(String nombre, String fecha,String DNI, double estatura, int hijos, Persona2 pareja){
+        this.estatura=estatura;
+        this.nombre=nombre;
+        this.DNI=DNI;
+        this.pareja=pareja;
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaNacimiento = LocalDate.parse(fecha, fmt);
+    }
+
     public void obtenerEdad() {
         Period periodo = Period.between(fechaNacimiento, LocalDate.now());
         System.out.println("Tienes " + periodo.getYears() + " años");
@@ -34,5 +43,6 @@ public class Persona2 {
         Persona2 p2 = new Persona2("12345678B", "01/07/1987");
         p.hijos = 3;
         System.out.println("Tienes " + p2.hijos + " hijos");
+        p.asignaPareja(p2);
     }
 }
