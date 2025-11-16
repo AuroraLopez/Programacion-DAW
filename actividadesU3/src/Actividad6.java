@@ -1,54 +1,59 @@
-import java.util.Scanner;
-
 public class Actividad6 {
-    public static void main(String[] args) { 
-        /*
-         * Utilizando las funciones de String, vas a diseñar el 
-         * juego del ahorcado. De un array de palabras vas a coger una al azar y se 
-         * creará el vector con * de la longitud para que cuando el usuario acierte
-         * una letra se vaya sustituyendo hasta que o bien la palabra se puede 
-         * leer(ganas) o acaba el juego si fallas 7 veces (pierdes)
-         */
-
-         Scanner teclado = new Scanner(System.in);
-
-         String palabras[]={"marco","reto","atun","pizza","avion","aurora","pedro","fatima","antonio", "rafael"};
-         int falladas=0; boolean encontrada=false;
-         int aleatorio=(int)(Math.random()*palabras.length-1+1);
-         String elegida=palabras[aleatorio];
-         char palabraoculta[]=new char[elegida.length()];
-        for(int i=0;i<palabraoculta.length;i++){
-            palabraoculta[i]='*';
+    // Fubción para imprimir una Matriz
+     public static void imprimeMatriz(int[][] matriz){
+        for(int i=0;i<matriz.length;i++){
+            for(int j=0;j<matriz[i].length;j++){
+                System.out.print(matriz[i][j]+" ");
+            }
+            System.out.println();
         }
-        
-        System.out.println("Bienvenido al juego del ahorcado");
-        do{
-         for(int i=0;i<palabraoculta.length;i++){
-            System.out.print(palabraoculta[i]);
-        }
+    }
+    // Función para ordenar una matriz
+    public static int[][] ordenarMatriz(int[][] matriz,int filas,int columnas){
+         for (int i = 0; i < filas * columnas - 1; i++) {
+            for (int j = 0; j < filas * columnas - i - 1; j++) {
+                // Obtener índices (fila, columna) del elemento actual y siguiente
+                int fila1 = j / columnas;
+                int col1 = j % columnas;
+                int fila2 = (j + 1) / columnas;
+                int col2 = (j + 1) % columnas;
 
-        System.out.println("Introduce la letra: *");
-        char letra=teclado.nextLine().charAt(0);
-        String letra2=String.valueOf(letra);
-        
-        if(elegida.contains(letra2)){
-            System.out.println("La letra está en la palabra");
-            for(int i=0;i<elegida.length();i++){
-                if (elegida.charAt(i)==letra2.charAt(0)) {
-                    palabraoculta[i]=letra2.charAt(0);
+                // Comparar y hacer swap si es necesario
+                if (matriz[fila1][col1] > matriz[fila2][col2]) {
+                    int temp = matriz[fila1][col1];
+                    matriz[fila1][col1] = matriz[fila2][col2];
+                    matriz[fila2][col2] = temp;
                 }
             }
-
         }
-        else{
-            System.out.println("La letra no está en la palabra");
-            falladas++;
+        return matriz;
+    }
+    public static void main(String[] args) {
+        /*
+         *  Hacer un vector con todo el contenido de la matriz y ordenarlo
+         */
+        //Ordenar una matriz
+        int[][] matriz={{3,7,1},{4,-4,2},{5,0,5}};
+        System.out.println("Matriz original");
+        imprimeMatriz(matriz);
+        System.out.println("Matriz ordenada");
+        int[][] resultado=ordenarMatriz(matriz, matriz.length,matriz[0].length);
+        imprimeMatriz(resultado);
+
+        // Pasar de matriz a vector
+        int[] vector= new int[matriz.length*matriz[0].length];
+        for(int r=0;r<matriz.length;r++){
+            for(int c=0;c<matriz[0].length;c++){
+                int valor=matriz[r][c];
+                vector[r*matriz[0].length+c]=valor;
+            }
         }
 
-        // Compruebo si he ganado.
-         }while(falladas!=7 && !encontrada);
-         System.out.println("EL PROGRAMA HA FINALIZADO");
-
-        
+        // Imprimir array
+        System.out.println("Matriz pasada a array");
+        for(int i=0;i<vector.length;i++){
+            System.out.print(vector[i]+" ");
+        }
+        System.out.println();
     }
 }

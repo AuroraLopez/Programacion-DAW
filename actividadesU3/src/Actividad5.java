@@ -1,32 +1,55 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Actividad5 {
     public static void main(String[] args) {
         /*
-         * Usa un ArrayList<String> para almacenar nombres
-         * introducidos por el usuario hasta que escriba “fin”. Interesa que no se
-         * repitan nombres y al terminar muestra todos los nombres ordenados.
+         * Crea una función que inserta un nuevo entero en la posición que le digas de 
+         * parámetro. Si le indicas un parámetro mayor al tamaño actual, rellenará con 0
          */
-        ArrayList<String> lista=new ArrayList<>(); // Creación de una lista vacía
-        String palabra;
-        do{
-        Scanner teclado= new Scanner(System.in);
-        System.out.println("Introduzca una palabra o fin para terminar");
-        palabra=teclado.nextLine();
-        if(!palabra.equals("fin") && !lista.contains(palabra)) {
-            lista.add(palabra);
-        }
-        }while(!palabra.equals("fin"));
-        // Ordenamos la lista
-        // lista.sort(String.CASE_INSENSITIVE_ORDER); // Le da igual las mayusculas
+        int[] vector={1,4,5,6,7,9,4};//tamaño 7
+        System.out.println("Vector original");
+        imprimeArray(vector);
+        System.out.println("Vector añadiendo un 5 en la posición 4");
+        int[] resultado=insertaEn(vector,4,5);
+        imprimeArray(resultado);
+        System.out.println("Vector añadiendo un 5 en la posición 9");
+        resultado=insertaEn(vector,9,5);
+        imprimeArray(resultado);
+    
 
-        lista.sort((a,b)->{return a.compareTo(b);}); // Primero las mayúsculas y luego las minúsculas
-        // Sacar las palabras guardadas
-        System.out.print("Contenido de la lista: ");
-        for(int i=0;i<lista.size();i++){
-            System.out.println(lista.get(i));
+    }
+
+    // Función para imprimir un array
+    public static void imprimeArray(int[] array){
+        for(int i=0;i<array.length;i++){
+            System.out.print(array[i]+" ");
         }
         System.out.println();
+    }
+    // Función para insertar un valor en una posicion
+    public static int[] insertaEn(int[] vector,int pos, int valor){
+        // Condición para añadir el valor o el 0 en las posiciones
+        if (pos>=vector.length){
+            // Crea el nuevo vector para poder copiar el anterior y añadir
+            int[] salida=new int[pos+1];  
+            for(int i=0;i<vector.length;i++){
+                salida[i]=vector[i];
+            }  
+            for(int i=vector.length;i<pos;i++){
+                salida[i]=0;
+            }
+            salida[pos]=valor;
+            return salida;
+        }
+        else{
+            int[] salida=new int[vector.length+1];
+
+            for(int i=0;i<pos;i++){
+                salida[i]=vector[i];
+            }
+            salida[pos]=valor;
+            for(int i =pos+1;i<salida.length;i++) {
+                salida[i]=vector[i-1];
+            }
+            return salida;
+        }
     }
 }

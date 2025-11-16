@@ -1,76 +1,72 @@
+import java.util.Scanner;
+
 public class Actividad8 {
-     public static void main(String[] args){
-        final char camino='0';
-        final char pared='#';
+    public static void main(String[] args) { 
+        /*
+         * Utilizando las funciones de String, vas a diseñar el 
+         * juego del ahorcado. De un array de palabras vas a coger una al azar y se 
+         * creará el vector con * de la longitud para que cuando el usuario acierte
+         * una letra se vaya sustituyendo hasta que o bien la palabra se puede 
+         * leer(ganas) o acaba el juego si fallas 7 veces (pierdes)
+         */
 
-        //Laberinto
-        char[][] laberinto = {
-        {'0', '#', '0', '0', '0'},
-        {'0', '#', '0', '#', '0'},
-        {'0', '0', '0', '#', '0'},
-        {'#', '#', '0', '0', '#'},
-        {'0', '0', '#', '#', '0'}
-    };
-        for(int i=0;i<laberinto.length;i++){
-            for(int j=0;j<laberinto[i].length;j++){
-                System.out.print(laberinto[i][j]+" ");
+        Scanner teclado=new Scanner(System.in);
+        //Tener una lista de palabras
+        String palabras[]={"adrian","domingo","programacion","rafael","antonio","aurora","pedro","marggio"};
+        //Hay que elegir 1
+        int aleatorio=(int)(Math.random()*(palabras.length-1+1));
+        String elegida=palabras[aleatorio];
+        System.out.println(elegida);
+        //Hay que hacer que tenga *
+        char palabraOculta[]=new char[elegida.length()];
+        for(int i=0;i<palabraOculta.length;i++){
+            palabraOculta[i]='*';
+        }
+        //Control de fallos y encontrada la palabra
+        boolean encontrada=false;
+        int fallos=0;
+        final int FALLOS=7;
+        //Inicio del juego
+        System.out.println("Bienvenido al juego del ahorcado!!");
+        do{
+            System.out.println("Introduce una letra para adivinar la palabra");
+            System.out.println("Ahora mismo tienes "+fallos+" fallos");
+            for(int i=0;i<palabraOculta.length;i++){
+                System.out.print(palabraOculta[i]);
             }
             System.out.println();
-        }
-           System.out.println();
-        //Punto de inicio y fin del laberinto
-        final int INICIO=0;
-        final int filaFIN=laberinto.length;
-        final int columnaFIN=laberinto[0].length;
+            System.out.print("Introduce la letra: ");
+            String letra=teclado.nextLine();
 
-        //Crear la matriz solucion
-        int[][] solucion=new int[filaFIN][columnaFIN];
-        for(int i=0;i<filaFIN;i++){
-            for(int j=0;j<columnaFIN;j++){
-                solucion[i][j]=0;
+            //Busco si letra está en la palabra elegida
+            if(elegida.contains(letra)){
+                System.out.println("La letra está en la palabra");
+                for(int i=0;i<elegida.length();i++){
+                    if(elegida.charAt(i)==letra.charAt(0))
+                        palabraOculta[i]=letra.charAt(0);
+                }   
             }
-        }
-
-        if(resolverDesde(0,0,laberinto,solucion)==true) 
-            imprimir(solucion);
-        else  
-            System.out.println("No hay salida del laberinto");
-
-    }
- 
-    //Procedimiento imprimir
-    public static void imprimir(int[][] matriz){
-        for(int i=0;i<matriz.length;i++){
-            for(int j=0;j<matriz[i].length;j++){
-                System.out.print(matriz[i][j]+" ");
+            else{//Si no está incremento fallos
+                System.out.println("La letra no está en la palabra");
+                fallos++;
             }
-            System.out.println();
-        }
-    }
+            //Compruebo si he ganado
+            int contador=0;
+            for(int i=0;i<palabraOculta.length;i++){
+                if(palabraOculta[i]=='*') contador++;
+            }
+            if(contador==0){
+                encontrada=true;
+            }
 
-    //FUncion resolverDesde
-    public static boolean resolverDesde(int x,int y,char[][] laberinto, int[][] solucion){
-        if(x==(laberinto.length-1) && y==(laberinto[0].length-1)){
-            solucion[x][y]=1;
-            return true;
+        }while(!encontrada && fallos!=FALLOS);
+        //FIN DEL JUEGO
+        if(encontrada){
+            System.out.println("ENHORABUENA!! HAS GANADO!!");
         }
-        if(esSeguro(x,y,laberinto)==true){
-            solucion[x][y]=1;
-            //analizo el resto de caminos posibles
-            if(resolverDesde(x+1,y,laberinto,solucion)==true) return true;
-            if(resolverDesde(x,y+1,laberinto,solucion)==true) return true;
-            if(resolverDesde(x-1,y,laberinto,solucion)==true) return true;
-            if(resolverDesde(x,y-1,laberinto,solucion)==true) return true;
-            //Backtracking
-            solucion[x][y]=0;
-            return false;
+        else{
+            System.out.println("QUÉ PENA!! HAS PERDIDO!!");
         }
-        return false;
-    }
-    public static boolean esSeguro(int x, int y, char[][]laberinto){
-        if(x>=0 && x<=(laberinto.length-1) && y>=0 && y<=(laberinto[0].length-1) && laberinto[x][y]=='0'){
-            return true;
-        }
-        return false;
+        teclado.close();
     }
 }
