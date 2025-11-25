@@ -9,6 +9,13 @@ public class Actividad3 {
             System.out.println();
         }
     }
+
+     public static void imprimeArray(int[] matriz){
+        for(int i =0;i<matriz.length;i++){
+                System.out.print(matriz[i]+" ");
+            }
+        System.out.println();
+    }
     public static void main(String[] args) {
         /*
          * Realiza un programa que inserta valores en una matriz dinámica y devuelva la suma de los valores de cada fila y columna
@@ -71,6 +78,7 @@ public class Actividad3 {
                 vectorMatriz[i*columnas+j]=matriz[i][j];
             }
         }
+        imprimeArray(vectorMatriz);
         teclado.close();
     }    
 }

@@ -1,74 +1,76 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Actividad1 {
-    public static void main(String[] args) throws Exception {
-        /*
-         * Realiza un programa que calcule el precio de unas entradas de cine en función
-         * del
-         * número de personas y del día de la semana. El precio base de una entrada son
-         * 8€. El miércoles (día
-         * del espectador), el precio base es de 5€. Los jueves son el día de la pareja,
-         * por lo que la entrada para
-         * dos cuesta 11 €. Con la tarjeta CineCampa se obtiene un 10% de descuento
-         * adicional.
-         * El programa pedirá el día, la cantidad de personas y si tiene la tarjeta
-         * CineCampa
-         */
-
-        // Lee y pide las variables
-        Scanner teclado = new Scanner(System.in);
-        double cuenta = 0; int parejas; int preciobase = 8;
-        int preciomiercoles = 5; int preciojueves = 11;  double descuento;
-        System.out.println("Cuantás personas son? ");
-        int personas = teclado.nextInt();
-        System.out.println("¿Qúe día de la semana es? ");
-        int dia = teclado.nextInt();
-        System.out.println("¿Tiene tarjeta CineCampa? 1=si/2=no");
-        int tarjeta = teclado.nextInt();
-
-        // Condiciones para cada dia
-        if (dia != 3 && dia != 4) {
-            cuenta = preciobase * personas;
-            System.out.println("Entradas individuales: " + personas);
-            System.out.println("Precio por entrada individual: " + preciobase);
-            System.out.println("Total: " + cuenta);
-            if (tarjeta == 1) {
-                descuento = cuenta * 0.10;
-                cuenta -= descuento;
-            } else {
-                descuento = 0;
-            }
-            System.out.println("Descuento: " + descuento);
-            System.out.println("A pagar: " + cuenta);
-
-        } else if (dia == 3) {
-            cuenta = preciomiercoles * personas;
-            System.out.println("Entradas individuales: " + personas);
-            System.out.println("Entradas individuales: " + personas);
-            System.out.println("Precio por entrada individual: " + preciobase);
-            System.out.println("Total: " + cuenta);
-            if (tarjeta == 1) {
-                descuento = cuenta * 0.10;
-                cuenta -= descuento;
-            } else {
-                descuento = 0;
-            }
-            System.out.println("Descuento: " + descuento);
-            System.out.println("A pagar: " + cuenta);
-        } else if (dia == 4) {
-                parejas = personas / 2;
-                cuenta = parejas * preciojueves;
-                System.out.println("Entradas grupales: " + parejas);
-                System.out.println("Precio por entrada individual: " + preciojueves);
-                System.out.println("Total: " + cuenta);
-                if (tarjeta == 1) {
-                    descuento = cuenta * 0.10;
-                    cuenta -= descuento;
-                } else {
-                    descuento = 0;
-                }
-                System.out.println("Descuento: " + descuento);
-                System.out.println("A pagar: " + cuenta);
+    public static ArrayList<Integer> validacion(int[] temasestudiados, ArrayList<Integer> temascaidos) {
+        ArrayList<Integer> temascoincidentes = new ArrayList<>(5);
+        for (int i = 0; i < temasestudiados.length; i++) {
+            if (temascaidos.contains(temasestudiados[i])) {
+                temascoincidentes.add(temasestudiados[i]);
             }
         }
+        temascoincidentes.sort((a, b) -> {
+            return -1 * a.compareTo(b);
+        });
+        return temascoincidentes;
     }
+
+    public static void main(String[] args) {
+        /*
+         * 1. (3 puntos) Para las oposiciones de informática se van a sacar 5 bolas de
+         * entre 65 temas a estudiar.
+         * El opositor se ha estudiado los temas: 4, 11, 23, 34, 35, 36, 39, 50, 60 y
+         * 65. En un menú tendrás las
+         * siguientes acciones:
+         * 1. Generar un vector aleatorio donde asegures que no se repita ningún número.
+         * Ejemplo:
+         * {1,60,44,12,23} (1,5 puntos)
+         * 2. Realiza un función que valide el vector generado con el vector del
+         * opositor y devuelva los
+         * temas que coinciden ordenados. Si hay coincidencias dile enhorabuena y si no,
+         * que lo
+         * sientes. En el ejemplo, dirá: “Temas coincidentes: 23, 60. Enhorabuena” (1,5
+         * puntos)
+         * Elabora este programa utilizando la clase ArrayList<Integer>.
+         */
+        Scanner teclado = new Scanner(System.in);
+        int[] temasestudiados = { 4, 11, 23, 34, 35, 36, 39, 50, 60, 65 };
+        ArrayList<Integer> temascaidos = new ArrayList<>(5);
+        ArrayList<Integer> temascoincidentes = new ArrayList<>(5);
+        int opcion;
+        do {
+            System.out.println("Introduzca una opción o -1 para salir");
+            System.out.println(" 1. Generar un vector aleatorio donde asegures que no se repita ningún número.");
+            System.out.println(
+                    " 2. Realiza un función que valide el vector generado con el vector del opositor y devuelva lo temas que coinciden ordenados.");
+            opcion = teclado.nextInt();
+            switch (opcion) {
+                case 1:
+                    for (int i = 0; i < 5; i++) {
+                        int numero = (int) (Math.random() * (65 - 1 + 1)) + 1;
+                        if (temascaidos.contains(numero)) {
+                            System.out.println("Ese numero está repetido");
+                        } else {
+                            temascaidos.add(i, numero);
+                        }
+                    }
+                    // Mostrar la matriz
+                    System.out.println("Matriz de examen");
+                    for (int i = 0; i < temascaidos.size(); i++) {
+                        System.out.println(temascaidos.get(i) + " ");
+                    }
+                    break;
+                case 2:
+                    temascoincidentes = validacion(temasestudiados, temascaidos);
+                    System.out.println("Temas coincidentes: ");
+                    for (int i = 0; i < temascoincidentes.size(); i++) {
+                        System.out.println(temascoincidentes.get(i));
+                    }
+                    System.out.println("¡EHNORABUENA!");
+                    break;
+                default:
+                    break;
+            }
+        } while (opcion != -1);
+    }
+}

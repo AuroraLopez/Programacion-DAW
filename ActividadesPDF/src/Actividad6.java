@@ -23,8 +23,14 @@ public class Actividad6 {
          */
          
          // Creamos las dos matrices
-        int matriz1[][]={{1,2,3},{1,2,3}};
-        int matriz2[][]={{4,2,1},{7,2,1}};
+        int matriz1[][]={
+            {1,2,3},
+            {1,2,3}
+        };
+        int matriz2[][]={
+            {4,2,1},
+            {7,2,1}
+        };
 
         // Creamos la matriz donde guardaremos el resultado
         double matrizresultado [][]=operacionesmatrices(matriz1, matriz2);
