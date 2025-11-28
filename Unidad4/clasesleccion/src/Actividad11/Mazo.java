@@ -21,6 +21,6 @@ public class Mazo {
 
     }
     public void estaVacio(){
-         
+
     }
 }
