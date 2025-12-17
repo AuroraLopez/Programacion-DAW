@@ -1,53 +1,47 @@
-import java.util.Scanner;
-
 public class Actividad4 {
-    public static boolean verificaAnagrama(String palabra1, String palabra2){
-        char palabra1letras[]=new char[palabra1.length()];
-        for (int i = 0; i < palabra1.length(); i++) {
-            palabra1letras[i] = palabra1.charAt(i);
-        }
-
-        char palabra2letras[]=new char[palabra2.length()];
-        for (int i = 0; i < palabra2.length(); i++) {
-            palabra2letras[i] = palabra2.charAt(i);
-        }
-
-        for (int i = 0; i < palabra1letras.length; i++) {
-            Character letra = palabra1letras[i];
-            if (letra.equals(palabra1letras[i])) {
-                
-            }
-        }
-        return true;
-    }
     public static void main(String[] args) {
         /*
-        * 4. (2 puntos) Utilizando las funciones de String, crea la función verificaAnagrama que determina
-        * si dos palabras introducidas por teclado, una es un anagrama de la otra, es decir, contiene las
-        * mismas letras pero cambiadas de orden. Tendrás que pasarlas a char[], ordenarlas y ver si son
-        * iguales. Además, deberás pasar todas las letras a minúscula y antes de comprobar si es anagrama ver
-        * los tamaños de ambas palabras. Ejemplos: Amor-roma o nido-oDin son anagrama pero alumnoclase no, por tener tamaño diferentes,
-        * ni nido-Oden porque la i no está en Oden.
-        */
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Ingresa una palabras");
-        String palabra1 = teclado.nextLine();
-        System.out.println("Ingresa otra palabras");
-        String palabra2 = teclado.nextLine();
-        char palabra1letras[]=new char[palabra1.length()];
-        for (int i = 0; i < palabra1.length(); i++) {
-            palabra1letras[i] = palabra1.charAt(i);
+         * Utilizando las funciones de String, realiza una función que comprueba si una
+         * palabra
+         * tiene las 5 vocales. Tendrás que pasar la palabra a minúscula y sustituir las
+         * letras que tienen tilde
+         * por las que no previamente. Ejemplo: Murciélago.
+         * 
+         */
+
+        int contadorvocales=0;
+        String palabra="Murciélago";
+        String palabraminuscula= palabra.toLowerCase();
+        String palabrasintilde=palabraminuscula;
+        if (palabraminuscula.contains("á")) {
+            palabrasintilde=palabraminuscula.replace("á", "a");
+        }
+        else if (palabraminuscula.contains("é")) {
+            palabrasintilde=palabraminuscula.replace("é", "e");
+        }
+        else if (palabraminuscula.contains("í")) {
+            palabrasintilde=palabraminuscula.replace("í", "i");
+        }
+        else if (palabraminuscula.contains("ó")) {
+            palabrasintilde=palabraminuscula.replace("ó", "o");
+        }
+        else if (palabraminuscula.contains("ú")) {
+            palabrasintilde=palabraminuscula.replace("ú", "u");
         }
 
-        char palabra2letras[]=new char[palabra2.length()];
-        for (int i = 0; i < palabra2.length(); i++) {
-            palabra2letras[i] = palabra2.charAt(i);
+        System.out.println(palabrasintilde);
+        for (int i = 0; i < palabrasintilde.length(); i++) {
+            if (palabrasintilde.charAt(i)=='a' || palabrasintilde.charAt(i)=='e' || palabrasintilde.charAt(i)=='i' || palabrasintilde.charAt(i)=='o' || palabrasintilde.charAt(i)=='u') {
+                contadorvocales++;
+            }
         }
+        if (contadorvocales==5) {
+            System.out.println("Tiene 5 vocales");
+        }
+        else{
+            System.out.println("Esta palabra contiene: "+contadorvocales+" vocales no 5");
+        }
+        
 
-        System.out.println("Primera palabra en char");
-        for (int i = 0; i < palabra1letras.length; i++) {
-            System.out.print(palabra1letras[i]);
-            System.out.println(" ");
-        }
     }
 }

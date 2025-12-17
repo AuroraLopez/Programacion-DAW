@@ -2,75 +2,87 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Actividad1 {
-    public static ArrayList<Integer> validacion(int[] temasestudiados, ArrayList<Integer> temascaidos) {
-        ArrayList<Integer> temascoincidentes = new ArrayList<>(5);
-        for (int i = 0; i < temasestudiados.length; i++) {
-            if (temascaidos.contains(temasestudiados[i])) {
-                temascoincidentes.add(temasestudiados[i]);
-            }
+    public static void imprimeArray(ArrayList<Integer> array) {
+        for (int i = 0; i < array.size(); i++) {
+            System.out.print(array.get(i));
+            System.out.print(" ");
         }
-        temascoincidentes.sort((a, b) -> {
-            return -1 * a.compareTo(b);
-        });
-        return temascoincidentes;
+        System.out.println("");
     }
 
     public static void main(String[] args) {
         /*
-         * 1. (3 puntos) Para las oposiciones de informática se van a sacar 5 bolas de
-         * entre 65 temas a estudiar.
-         * El opositor se ha estudiado los temas: 4, 11, 23, 34, 35, 36, 39, 50, 60 y
-         * 65. En un menú tendrás las
-         * siguientes acciones:
-         * 1. Generar un vector aleatorio donde asegures que no se repita ningún número.
-         * Ejemplo:
-         * {1,60,44,12,23} (1,5 puntos)
-         * 2. Realiza un función que valide el vector generado con el vector del
-         * opositor y devuelva los
-         * temas que coinciden ordenados. Si hay coincidencias dile enhorabuena y si no,
-         * que lo
-         * sientes. En el ejemplo, dirá: “Temas coincidentes: 23, 60. Enhorabuena” (1,5
-         * puntos)
+         * 1. (3 puntos) Para el sorteo del Niño se extraen 5 bolas al azar con valores
+         * del 0 al 9. El jugador va a
+         * introducir los 5 números con los que juega. Se pide crear una función que
+         * valide si el jugador ha
+         * ganado, es decir, tiene los 5 números del sorteo. En el caso de tener todos,
+         * el jugador gana
+         * 100.000€, si sólo tiene 4 ganará el 50%, si tiene 3 200€, si tiene 2 50€ y si
+         * tiene 1 10€. Ten en
+         * cuenta que un número puede repetirse más de una vez en cada posición.
          * Elabora este programa utilizando la clase ArrayList<Integer>.
          */
         Scanner teclado = new Scanner(System.in);
-        int[] temasestudiados = { 4, 11, 23, 34, 35, 36, 39, 50, 60, 65 };
-        ArrayList<Integer> temascaidos = new ArrayList<>(5);
-        ArrayList<Integer> temascoincidentes = new ArrayList<>(5);
-        int opcion;
-        do {
-            System.out.println("Introduzca una opción o -1 para salir");
-            System.out.println(" 1. Generar un vector aleatorio donde asegures que no se repita ningún número.");
-            System.out.println(
-                    " 2. Realiza un función que valide el vector generado con el vector del opositor y devuelva lo temas que coinciden ordenados.");
-            opcion = teclado.nextInt();
-            switch (opcion) {
-                case 1:
-                    for (int i = 0; i < 5; i++) {
-                        int numero = (int) (Math.random() * (65 - 1 + 1)) + 1;
-                        if (temascaidos.contains(numero)) {
-                            System.out.println("Ese numero está repetido");
-                        } else {
-                            temascaidos.add(i, numero);
-                        }
-                    }
-                    // Mostrar la matriz
-                    System.out.println("Matriz de examen");
-                    for (int i = 0; i < temascaidos.size(); i++) {
-                        System.out.println(temascaidos.get(i) + " ");
-                    }
-                    break;
-                case 2:
-                    temascoincidentes = validacion(temasestudiados, temascaidos);
-                    System.out.println("Temas coincidentes: ");
-                    for (int i = 0; i < temascoincidentes.size(); i++) {
-                        System.out.println(temascoincidentes.get(i));
-                    }
-                    System.out.println("¡EHNORABUENA!");
-                    break;
-                default:
-                    break;
+        // Elección aleatoria
+        ArrayList<Integer> numerossorteo = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int numeroaleatorio = (int) (Math.random() * (9 - 0 + 1)) + 0;
+            numerossorteo.add(numeroaleatorio);
+        }
+
+        // Almacenamos los numeros en el array
+        ArrayList<Integer> numeroselegidos = new ArrayList<>(5);
+        for (int i = 0; i < 5; i++) {
+            System.out.println("¿Que número elije añadir a su juego?");
+            int numero = teclado.nextInt();
+            numeroselegidos.add(numero);
+        }
+
+        
+        // Muestra la seleccion aleatoria
+        System.out.println("Numeros del sorteo");
+        imprimeArray(numerossorteo);
+
+        // Muestra array usuario
+        System.out.println("Numeros del usuario");
+        imprimeArray(numeroselegidos);
+
+        // Validamos si hemos ganado o no
+        ArrayList<Integer> numerosiguales=new ArrayList<>();
+
+        for (int i = 0; i < numeroselegidos.size(); i++) {
+            if (numerossorteo.contains(numeroselegidos.get(i))) {
+                numerosiguales.add(numeroselegidos.get(i));
             }
-        } while (opcion != -1);
+        }
+        if (numerosiguales.size()==1) {
+            System.out.println("Coincide solo un numero, has ganado 10 euros");
+            System.out.print("Numeros coincidentes: ");
+            imprimeArray(numerosiguales);
+        }
+        else if(numerosiguales.size()==2){
+            System.out.println("Coincide dos numero, has ganado 50 euros");
+            System.out.print("Numeros coincidentes: ");
+            imprimeArray(numerosiguales);
+        }
+        else if(numerosiguales.size()==3){
+            System.out.println("Coincide tres numero, has ganado 200 euros");
+            System.out.print("Numeros coincidentes: ");
+            imprimeArray(numerosiguales);
+        }
+        else if(numerosiguales.size()==4){
+            System.out.println("Coincide cuatro numero, has ganado 50000 euros");
+            System.out.print("Numeros coincidentes: ");
+            imprimeArray(numerosiguales);
+        }
+        else if(numerosiguales.size()==5){
+            System.out.println("Coincide cinco numero, has ganado 100000 euros");
+            System.out.print("Numeros coincidentes: ");
+            imprimeArray(numerosiguales);
+        }
+        else{
+            System.out.println("Lo sentimos no ha ganado nada, vuelva a intentarlo");
+        }
     }
 }
