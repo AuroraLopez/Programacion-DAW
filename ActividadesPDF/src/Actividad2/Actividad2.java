@@ -16,18 +16,30 @@ public class Actividad2 {
        try {
         // Lectura del contenido del fichero JSON
         Object ob = new JSONParser().parse(new FileReader("C:\\Users\\Auri\\Desktop\\1DAW\\Programacion\\Programacion-DAW\\ActividadesPDF\\src\\Actividad2\\heroes.json"));
-        // Convertir objeto a JSON y procesarlo
-        JSONObject js = (JSONObject) ob;
         
         // Leyendo el array guardado en esa clave
-        JSONArray arr = (JSONArray) js.get("publisher");
+        JSONArray arr = (JSONArray) ob;
         // Recorrer cada elemento de ese array json
         for (Object item : arr) {
             JSONObject data = (JSONObject) item;
             String publiser= (String)data.get("publisher");
             String superheroe=(String)data.get("superhero");
-            if (publiser.contains("DC") && superheroe.contains("G")) {
-                System.out.println(data.get(arr));
+            String alter_ego=(String)data.get("alter_ego");
+            String aparicion=(String)data.get("first_appearance");
+            String character=(String)data.get("characters");
+            if (publiser.contains("DC") && superheroe.startsWith("G")) {
+                System.out.println("-------------------------------");
+                System.out.println("|            DC               |");
+                System.out.println("-------------------------------");
+                System.out.println("Superheroe: "+superheroe);
+                System.out.println("Alter-ego: "+alter_ego);
+                System.out.println("Primera aparición: "+aparicion);
+                System.out.println("Character: "+character);
+                /*"superhero":"Captain America", 
+        "publisher":"Marvel Comics", 
+        "alter_ego":"Steve Rogers",
+        "first_appearance":"Captain America Comics #1",
+        "characters" */
             }
         }
         } catch (Exception e) {
