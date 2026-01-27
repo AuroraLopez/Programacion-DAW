@@ -9,8 +9,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import Actividades.Heroe;
-
 public class Actividad3 {
     public static void main(String[] args) {
         /*
