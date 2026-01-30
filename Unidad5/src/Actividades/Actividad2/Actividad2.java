@@ -1,4 +1,4 @@
-package Actividades;
+package Actividades.Actividad2;
 
 import java.io.File;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class Actividad2 {
             int suma = 0;
             int contador = 0;
             File archivo = new File(
-                    "C:\\Users\\Auri\\Desktop\\1º DAW\\Programación\\Programacion-DAW\\Unidad5\\src\\Actividades\\ArchivoEjer2.txt");
+                    "C:\\Users\\Auri\\Desktop\\1º DAW\\Programación\\Programacion-DAW\\Unidad5\\src\\Actividades\\Actividad2\\ArchivoEjer2.txt");
             Scanner sc = new Scanner(archivo);
             sc.useDelimiter(","); // Por donde delimites tiene que estar al final para que cuente con el ultimo tambien 1,2,3,
             while (sc.hasNextInt()) {

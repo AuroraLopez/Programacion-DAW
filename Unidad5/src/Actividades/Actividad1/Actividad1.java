@@ -1,4 +1,4 @@
-package Actividades;
+package Actividades.Actividad1;
 
 import java.io.File;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class Actividad1 {
    try {
         int suma=0;
         int contador=0;
-        File archivo=new File("C:\\Users\\Auri\\Desktop\\1º DAW\\Programación\\Programacion-DAW\\Unidad5\\src\\Actividades\\ArchivoEjer1.txt");
+        File archivo=new File("C:\\Users\\Auri\\Desktop\\1º DAW\\Programación\\Programacion-DAW\\Unidad5\\src\\Actividades\\Actividad1\\ArchivoEjer1.txt");
         Scanner sc=new Scanner(archivo);
         while (sc.hasNextInt()) {
             int numero=sc.nextInt();
