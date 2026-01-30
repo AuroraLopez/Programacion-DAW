@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Conexiones.Conexion;
+
 public class AppBD {
     public static void main(String[] args) {
         // SQL para crear tabla persona
