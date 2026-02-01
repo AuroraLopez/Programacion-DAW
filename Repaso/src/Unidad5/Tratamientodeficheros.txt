@@ -1,0 +1,55 @@
+		Tratamiento de ficheros
+---------------------------------------------------------
+|			Lectura				| *El Buffered siempre apunta al Reader o Writer
+---------------------------------------------------------
+Para leer fichero:
+- FileReader (lector)
+- FileBuffered para el readline() o null
+
+- Scanner lector = new Scanner(File)
+
+Leer linea a linea con File Reader y FileBuffered: 
+String linea;
+while((linea=buffer.readLine())!= null){
+	System.out.println(linea);
+}
+
+Leer numero a numero separado por espacios:
+while (scanner.hasNextInt()) {
+            int numero=sc.nextInt();
+        }
+
+Leer numeros con separación de ,
+sc.useDelimiter(","); // Por donde delimites tiene que estar al final para que cuente con el ultimo tambien 1,2,3,
+            while (sc.hasNextInt()) {
+                int numero = sc.nextInt();
+            }
+
+---------------------------------------------------------
+|			Escritura			| *Siempre recuerda cerrar el escritor porque si se queda abierto no puedes acceder al archivo
+---------------------------------------------------------
+Para escribir ficheros:
+Tras leerlos con el reader o scanner.
+- FileWriter
+- BufferedWriter
+
+Operaciones con ficheros:
+- escritor.write(contenido); // Escribimos la cadena en el archivo
+- escritor.newLine(); // Añadimos una nueva línea
+- escritor.flush(); // Aseguramos que se escriban los datos
+
+
+---------------------------------------------------------
+|			Pasos a seguir			| 
+---------------------------------------------------------
+1. Abrir fichero
+2. Procesar (leer / escribir)
+3. Cerrar fichero 
+
+
+| Texto               | Binario                        |
+| ------------------- | ------------------------------ |
+| Legible             | No legible                     |
+| FileReader / Writer | FileInputStream / OutputStream |
+| BufferedReader      | Lectura byte a byte            |
+| CSV, TXT            | JPG, MP3, PDF                  |
