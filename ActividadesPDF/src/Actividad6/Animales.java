@@ -1,26 +1,14 @@
 package Actividad6;
 
 public class Animales {
-    protected int id;
     protected String nombre;
-    protected String tipo;
 
     public Animales(){
 
     }
 
-    public Animales(int id, String nombre, String tipo) {
-        this.id = id;
+    public Animales(String nombre) {
         this.nombre = nombre;
-        this.tipo = tipo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -31,16 +19,9 @@ public class Animales {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 
     @Override
     public String toString() {
-        return "Animales [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + "]";
+        return "Animales [nombre=" + nombre + "]";
     }
 }

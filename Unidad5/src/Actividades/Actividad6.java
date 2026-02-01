@@ -12,7 +12,7 @@ public class Actividad6 {
         String superheroe;
         String alterego;
         // Lectura del contenido del fichero JSON
-        Object ob = new JSONParser().parse(new FileReader("C:\\Users\\\\Auri\\Desktop\\1º DAW\\Programación\\Programacion-DAW\\Unidad5\\src\\Lecciones\\heroes.json"));
+        Object ob = new JSONParser().parse(new FileReader("C:\\Users\\USER\\Desktop\\1DAW\\Programación-DAW\\Programación\\Unidad5\\src\\Lecciones\\heroes.json"));
         // Convertir objeto a JSON y procesarlo
         JSONArray arr = (JSONArray) ob;
         // Recorrer cada elemento de ese array json

@@ -16,13 +16,9 @@ public class Actividad3 {
 
         try {
             Object ob = new JSONParser().parse(
-                    new FileReader("C:\\Users\\USER\\Desktop\\1DAW\\Programación-DAW\\Programación\\ActividadesPDF\\src\\Actividad3\\DAW.json")
+                    new FileReader("C:\\Users\\USER\\Desktop\\1DAW\\Programacion-DAW\\Programacion\\ActividadesPDF\\src\\Actividad3\\DAW.json")
             );
-
-            // JSON raíz → objeto
             JSONObject raiz = (JSONObject) ob;
-
-            // Sacamos el array de alumnos
             JSONArray alumnos = (JSONArray) raiz.get("alumnos");
 
             for (Object item : alumnos) {
