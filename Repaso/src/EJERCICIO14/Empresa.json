@@ -1,0 +1,9 @@
+{
+  "empresa": "TechSoft",
+  "empleados": [
+    { "nombre": "Ana", "salario": 1200, "departamento": "IT" },
+    { "nombre": "Juan", "salario": 900, "departamento": "Ventas" },
+    { "nombre": "Lucia", "salario": 1500, "departamento": "IT" },
+    { "nombre": "Pedro", "salario": 1100, "departamento": "RRHH" }
+  ]
+}

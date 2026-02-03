@@ -59,7 +59,7 @@ public class Actividad5_3 {
         }
     }
 
-    // ✍ INSERTAR ALUMNO
+    // INSERTAR ALUMNO
     public static void insertarAlumno(File archivo, Scanner teclado) {
         try{ BufferedReader br = new BufferedReader(new FileReader(archivo));
              BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true));

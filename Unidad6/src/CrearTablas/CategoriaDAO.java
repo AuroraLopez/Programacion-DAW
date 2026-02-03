@@ -37,6 +37,27 @@ public class CategoriaDAO {
         }
     }
 
+    public static Categoria listar(int id) {
+        String sql = "SELECT * FROM categoria where codigo=?";
+        Categoria nuevo=null;
+        try {
+            Connection conn = Conexion.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println(
+                        rs.getInt("codigo") + " - " + rs.getString("nombre"));
+                        nuevo=new Categoria(rs.getInt("codigo"),rs.getString("nombre"));
+            }
+            
+            
+        }catch(SQLException e){
+            System.err.println(e.getMessage());
+        }
+        return nuevo;
+    }
+
     // UPDATE
     public static void actualizar(int codigo, String nuevoNombre) {
         String sql = "UPDATE categoria SET nombre=? WHERE codigo=?";
@@ -49,6 +70,20 @@ public class CategoriaDAO {
             System.err.println(e.getMessage());
         }
     }
+
+    public static void actualizar(Categoria Objeto) {
+        String sql = "UPDATE categoria SET nombre=? WHERE codigo=?";
+        try (Connection conn = Conexion.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, Objeto.getNombre());
+            ps.setInt(2, Objeto.getCodigo());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    
 
     // DELETE
     public static void borrar(int codigo) {

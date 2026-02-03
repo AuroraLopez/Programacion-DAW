@@ -1,0 +1,57 @@
+¿Qué es un HashMap?
+
+Un HashMap es una estructura de datos de Java que guarda información en pares:
+clave → valor
+
+En Java:
+HashMap<String, Integer> edades = new HashMap<>();
+
+¿Cómo funciona (idea rápida)?
+
+Cada clave es única
+
+Cada clave apunta a un valor
+
+El acceso es muy rápido
+
+No mantiene orden
+
+Operaciones básicas (IMPORTANTÍSIMO para el examen)
+➕ Crear un HashMap
+HashMap<String, Integer> edades = new HashMap<>();
+
+➕ Añadir elementos → put
+edades.put("Ana", 20);
+edades.put("Luis", 22);
+edades.put("Marta", 19);
+
+Obtener un valor → get
+int edad = edades.get("Ana");  // 20
+
+
+Si la clave no existe → devuelve null
+
+Comprobar si existe una clave
+edades.containsKey("Luis"); // true
+
+Eliminar un elemento
+edades.remove("Marta");
+
+Tamaño del HashMap
+edades.size(); // número de pares clave-valor
+
+Recorrer un HashMap (MUY típico)
+Recorrer claves
+for (String nombre : edades.keySet()) {
+    System.out.println(nombre);
+}
+
+Recorrer valores
+for (int edad : edades.values()) {
+    System.out.println(edad);
+}
+
+Recorrer clave + valor (el mejor)
+for (Map.Entry<String, Integer> entrada : edades.entrySet()) {
+    System.out.println(entrada.getKey() + " → " + entrada.getValue());
+}

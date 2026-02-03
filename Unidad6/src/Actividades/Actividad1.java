@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Conexiones.Conexionnba;
+
 public class Actividad1 {
     public static void main(String[] args) {
         // // Muestra los jugadores españoles que son de los Lakers

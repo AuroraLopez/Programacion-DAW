@@ -1,11 +1,10 @@
-package Actividades;
-
+package Conexiones;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexionnba {
-    private static final String URL = "jdbc:mysql://localhost:3306/nba";
+public class ConexionAct3 {
+    private static final String URL = "jdbc:mysql://localhost:3306/clases_daw";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "root";
 
