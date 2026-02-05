@@ -12,3 +12,4 @@ public class ConexionAct3 {
         return DriverManager.getConnection(URL, USUARIO, PASSWORD);
     }
 }
+
