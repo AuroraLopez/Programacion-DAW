@@ -13,28 +13,34 @@ import Conexiones.ConexionAct8;
 public class ProfesorDAO {
     // READ (lista de Persona)
     public List<Profesor> listar() {
-        List<Profesor> personas = new ArrayList<>();
+        List<Profesor> profesores = new ArrayList<>();
         String sql = "SELECT id, nombre, email FROM persona";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                personas.add(new Persona(rs.getInt("id"),
-                        rs.getString("nombre"), rs.getString("email")));
+                profesores.add(new Profesor(rs.getInt("id"),
+                        rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"),
+                            rs.getString("especialidad"), rs.getString("telefono")
+                         ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return personas;
+        return profesores;
     }
 
     // CREATE
-    public void insertar(Persona p) {
-        String sql = "INSERT INTO persona (nombre, email) VALUES (?, ?)";
-        try (Connection conn = Conexion.getConnection();
+    public void insertar(Profesor p) {
+        String sql = "INSERT INTO persona (id, nombre, apellido1, apellido2, especialidad, telefono) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, p.getNombre());
-            ps.setString(2, p.getEmail());
+            ps.setInt(1, p.getId());
+            ps.setString(2, p.getNombre());
+            ps.setString(3, p.getApellido1());
+            ps.setString(4, p.getApellido2());
+            ps.setString(5, p.getEspecialidad());
+            ps.setString(6, p.getTelefono());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,13 +48,12 @@ public class ProfesorDAO {
     }
 
     // UPDATE
-    public void actualizar(Persona p) {
-        String sql = "UPDATE persona SET nombre=?, email=? WHERE id=?";
-        try (Connection conn = Conexion.getConnection();
+    public void actualizar(Profesor p) {
+        String sql = "UPDATE persona SET nombre=? WHERE id=?";
+        try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getNombre());
-            ps.setString(2, p.getEmail());
-            ps.setInt(3, p.getId());
+            ps.setInt(2, p.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +63,7 @@ public class ProfesorDAO {
     // DELETE
     public void eliminar(int id) {
         String sql = "DELETE FROM persona WHERE id=?";
-        try (Connection conn = Conexion.getConnection();
+        try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
