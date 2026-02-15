@@ -11,10 +11,10 @@ import Conexiones.ConexionAct8;
 
 
 public class ProfesorDAO {
-    // READ (lista de Persona)
+    // READ (lista de Profesor)
     public List<Profesor> listar() {
         List<Profesor> profesores = new ArrayList<>();
-        String sql = "SELECT id, nombre, email FROM persona";
+        String sql = "SELECT id, nombre, apellido1, apellido2, especialidad, telefono FROM profesor";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
@@ -32,7 +32,7 @@ public class ProfesorDAO {
 
     // CREATE
     public void insertar(Profesor p) {
-        String sql = "INSERT INTO persona (id, nombre, apellido1, apellido2, especialidad, telefono) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO profesor (id, nombre, apellido1, apellido2, especialidad, telefono) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, p.getId());
@@ -49,7 +49,7 @@ public class ProfesorDAO {
 
     // UPDATE
     public void actualizar(Profesor p) {
-        String sql = "UPDATE persona SET nombre=? WHERE id=?";
+        String sql = "UPDATE profesor SET nombre=? WHERE id=?";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getNombre());
@@ -62,7 +62,7 @@ public class ProfesorDAO {
 
     // DELETE
     public void eliminar(int id) {
-        String sql = "DELETE FROM persona WHERE id=?";
+        String sql = "DELETE FROM profesor WHERE id=?";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);

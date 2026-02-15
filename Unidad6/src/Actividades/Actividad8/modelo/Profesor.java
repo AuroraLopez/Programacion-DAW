@@ -12,6 +12,11 @@ public class Profesor {
 
     }
 
+    public Profesor(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public Profesor(int id, String nombre, String apellido1, String apellido2, String especialidad, String telefono) {
         this.id = id;
         this.nombre = nombre;
