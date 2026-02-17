@@ -12,13 +12,13 @@ public class Alumno {
 
     }
 
-    public Alumno(int id, String nif, String grupo, String nombre, String apellido1, String apellido2) {
+    public Alumno(int id, String nif, String nombre, String apellido1, String apellido2,String grupo) {
         this.id = id;
         this.nif = nif;
-        this.grupo = grupo;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
+        this.grupo = grupo;
     }
 
     public int getId() {
