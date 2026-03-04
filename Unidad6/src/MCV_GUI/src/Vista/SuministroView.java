@@ -4,13 +4,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class PiezaView extends JPanel{
+public class SuministroView extends JPanel{
     // Campos
-    public JTextField txtCodigo = new JTextField(5);
-    public JTextField txtNombre = new JTextField(10);
-    public JTextField txtColor = new JTextField(10);
-    public JTextField txtPrecio = new JTextField(5);
-    public JTextField txtCodCategoria = new JTextField(5);
+    public JTextField txtCodigoProveedor = new JTextField(5);
+    public JTextField txtCodigoPieza = new JTextField(5);
+    public JTextField txtCantidad = new JTextField(5);
+    public JTextField txtFecha = new JTextField(10);
 
     //Botones
     public JButton btnInsertar = new JButton("Insertar");
@@ -19,33 +18,30 @@ public class PiezaView extends JPanel{
     public JButton btnLimpiar = new JButton("Limpiar");
 
     // Tabla
-    public DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{"Codigo", "Nombre", "Color", "Precio", "Cod_categoria"}, 0);
+    public DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{"CodigoProveedor", "CodigoPieza", "Cantidad", "Fecha"}, 0);
 
     public JTable tabla = new JTable(modeloTabla);
 
-    public PiezaView(){
+    public SuministroView(){
 
         setLayout(new BorderLayout());
 
         // ===== PANEL SUPERIOR =======
         JPanel panelFormulario = new JPanel();
         panelFormulario.setBorder(
-            BorderFactory.createTitledBorder("Datos Pieza"));
+            BorderFactory.createTitledBorder("Datos Suministro"));
         
-            panelFormulario.add(new JLabel("Código: "));
-            panelFormulario.add(txtCodigo);
+            panelFormulario.add(new JLabel("Código del proveedor: "));
+            panelFormulario.add(txtCodigoProveedor);
 
-            panelFormulario.add(new JLabel("Nombre: "));
-            panelFormulario.add(txtNombre);
+            panelFormulario.add(new JLabel("Código de la pieza: "));
+            panelFormulario.add(txtCodigoPieza);
 
-            panelFormulario.add(new JLabel("Color: "));
-            panelFormulario.add(txtColor);
+            panelFormulario.add(new JLabel("Cantidad: "));
+            panelFormulario.add(txtCantidad);
 
-            panelFormulario.add(new JLabel("Precio: "));
-            panelFormulario.add(txtPrecio);
-
-            panelFormulario.add(new JLabel("Código de la categoría: "));
-            panelFormulario.add(txtCodCategoria);
+            panelFormulario.add(new JLabel("Fecha: "));
+            panelFormulario.add(txtFecha);
 
             panelFormulario.add(btnInsertar);
             panelFormulario.add(btnActualizar);

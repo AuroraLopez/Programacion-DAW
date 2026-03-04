@@ -1,18 +1,19 @@
 package Controlador;
 
 import javax.swing.*;
-import modelo.Pieza;
-import Vista.PiezaView;
-import modelo.PiezaDAO;
 
+
+import Vista.ProveedorView;
+import modelo.Proveedor;
+import modelo.ProveedorDAO;
 
 import java.util.List;
 
-public class PiezaController {
-    private PiezaView view;
-    private PiezaDAO dao = new PiezaDAO();
+public class ProveedorController {
+    private ProveedorView view;
+    private ProveedorDAO dao = new ProveedorDAO();
 
-    public PiezaController(PiezaView view){
+    public ProveedorController(ProveedorView view){
         this.view= view;
 
         initController();
@@ -37,12 +38,11 @@ public class PiezaController {
     private void insertar(){
         try {
             int codigo= Integer.parseInt(view.txtCodigo.getText());
-            String nombre = view.txtNombre.getText();
-            String color = view.txtColor.getText();
-            double precio= Double.parseDouble(view.txtPrecio.getText());
-            int codigo_categoria = Integer.parseInt(view.txtCodCategoria.getText());
+            String direccion = view.txtDireccion.getText();
+            String ciudad = view.txtCiudad.getText();
+            String provincia = view.txtProvincia.getText();
 
-            dao.insertar(codigo, nombre, color, precio, codigo_categoria);
+            dao.insertar(codigo, direccion, ciudad, provincia);
 
             cargarTabla();
             limpiar();
@@ -58,9 +58,9 @@ public class PiezaController {
         if( fila == -1) return;
         try {
             int codigo= Integer.parseInt(view.txtCodigo.getText());
-            double precio= Double.parseDouble(view.txtPrecio.getText());
+            String direccion = view.txtDireccion.getText();
 
-            dao.actualizarPrecio(codigo, precio);
+            dao.actualizar(codigo, direccion);
 
             cargarTabla();
             limpiar();
@@ -88,33 +88,29 @@ public class PiezaController {
         int fila = view.tabla.getSelectedRow();
         if( fila == -1) return;
             view.txtCodigo.setText(view.modeloTabla.getValueAt(fila, 0).toString());
-            view.txtNombre.setText(view.modeloTabla.getValueAt(fila, 1).toString());
-            view.txtColor.setText(view.modeloTabla.getValueAt(fila, 2).toString());
-            view.txtPrecio.setText(view.modeloTabla.getValueAt(fila, 3).toString());
-            view.txtCodCategoria.setText(view.modeloTabla.getValueAt(fila, 4).toString());
-      
+            view.txtDireccion.setText(view.modeloTabla.getValueAt(fila, 1).toString());
+            view.txtCiudad.setText(view.modeloTabla.getValueAt(fila, 2).toString());
+            view.txtProvincia.setText(view.modeloTabla.getValueAt(fila, 3).toString());
     }
     private void cargarTabla(){
         view.modeloTabla.setRowCount(0);
 
-        List<Pieza> lista= dao.listar();
-        for(Pieza p: lista){
+        List<Proveedor> lista= dao.listar();
+        for(Proveedor p: lista){
             view.modeloTabla.addRow(new Object[]{
                 p.getCodigo(),
-                p.getNombre(),
-                p.getColor(),
-                p.getPrecio(),
-                p.getCodCategoria()
-            });
-        }
+                p.getDireccion(),
+                p.getCiudad(),
+                p.getProvincia()
+        });
+    }
     }
 
     private void limpiar(){
         view.txtCodigo.setText("");
-        view.txtNombre.setText("");
-        view.txtColor.setText("");
-        view.txtPrecio.setText("");
-        view.txtCodCategoria.setText("");
+        view.txtDireccion.setText("");
+        view.txtCiudad.setText("");
+        view.txtProvincia.setText("");
         view.tabla.clearSelection();
     }
 }
