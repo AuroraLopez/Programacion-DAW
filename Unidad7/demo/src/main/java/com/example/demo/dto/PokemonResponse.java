@@ -71,125 +71,124 @@ public class PokemonResponse {
         this.sprites = sprites;
     }
 
-}
+    public static class Stat {
+        private int base_stat;
+        private StatInfo stat;
 
-class Stat {
-    private int base_stat;
-    private StatInfo stat;
+        public Stat() {
+        }
 
-    public Stat() {
+        // Getter y Setter
+        public int getBase_stat() {
+            return base_stat;
+        }
+
+        public void setBase_stat(int base_stat) {
+            this.base_stat = base_stat;
+        }
+
+        public StatInfo getStat() {
+            return stat;
+        }
+
+        public void setStat(StatInfo stat) {
+            this.stat = stat;
+        }
+
     }
 
-    // Getter y Setter
-    public int getBase_stat() {
-        return base_stat;
+    public static class StatInfo {
+        private String name;
+        private String url;
+
+        public StatInfo() {
+        }
+
+        // Getters y Setters
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
     }
 
-    public void setBase_stat(int base_stat) {
-        this.base_stat = base_stat;
+    public static class TypeSlot {
+        private int slot;
+        private TypeInfo type;
+
+        public TypeSlot() {
+        }
+
+        // Getters y Setters
+        public int getSlot() {
+            return slot;
+        }
+
+        public void setSlot(int slot) {
+            this.slot = slot;
+        }
+
+        public TypeInfo getType() {
+            return type;
+        }
+
+        public void setType(TypeInfo type) {
+            this.type = type;
+        }
+
     }
 
-    public StatInfo getStat() {
-        return stat;
+    public static class TypeInfo {
+        private String name;
+        private String url;
+
+        public TypeInfo() {
+        }
+
+        // Getters y Setters
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
     }
 
-    public void setStat(StatInfo stat) {
-        this.stat = stat;
+    public static class Sprites {
+        private String front_default;
+
+        public Sprites() {
+        }
+
+        // Getters y Setters
+        public String getFront_default() {
+            return front_default;
+        }
+
+        public void setFront_default(String front_default) {
+            this.front_default = front_default;
+        }
+
     }
-
-}
-
-class StatInfo {
-    private String name;
-    private String url;
-
-    public StatInfo() {
-    }
-
-    // Getters y Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-}
-
-class TypeSlot {
-    private int slot;
-    private TypeInfo type;
-
-    public TypeSlot() {
-    }
-
-    // Getters y Setters
-    public int getSlot() {
-        return slot;
-    }
-
-    public void setSlot(int slot) {
-        this.slot = slot;
-    }
-
-    public TypeInfo getType() {
-        return type;
-    }
-
-    public void setType(TypeInfo type) {
-        this.type = type;
-    }
-
-}
-
-class TypeInfo {
-    private String name;
-    private String url;
-
-    public TypeInfo() {
-    }
-
-    // Getters y Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-}
-
-class Sprites {
-    private String front_default;
-
-    public Sprites() {
-    }
-
-    // Getters y Setters
-    public String getFront_default() {
-        return front_default;
-    }
-
-    public void setFront_default(String front_default) {
-        this.front_default = front_default;
-    }
-
 }

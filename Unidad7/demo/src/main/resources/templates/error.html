@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error 404 - No encontrado</title>
+    <link rel="stylesheet" th:href="@{/css/pokemon.css}">
+</head>
+
+<body>
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Página no encontrada</h2>
+        <!-- IMAGEN DEL ERROR 404 -->
+        <img class="error404" th:src="@{https://www.raquelbegue.com/blog/wp-content/uploads/2014/01/404-charizard.jpg}"
+            alt="Página no encontrada" />
+        <p>Lo sentimos, la página que buscas no existe.</p>
+        <a class="button" th:href="@{/pokemon}">Ir a la Pokédex </a> ➡️
+    </div>
+</body>
+
+</html>
