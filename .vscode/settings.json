@@ -3,5 +3,12 @@
         "lib/**/*.jar",
         "json-simple-1.1.1.jar",
         "mysql-connector-j-9.5.0.jar"
-    ]
+    ],
+    "java.project.sourcePaths": [
+        "Unidad6/src/MCV_GUI/src",
+        "Unidad6/src/GUI/src",
+        "Unidad6/src",
+        "Unidad7/ProyectoFinal/proyectofinal/src/main/java/com/example/proyectofinal"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
