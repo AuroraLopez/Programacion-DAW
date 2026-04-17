@@ -20,7 +20,7 @@ import com.example.proyectofinal.Service.VideoJuegoService;
 @RestController ()
 @RequestMapping("/videojuegos")
 public class VideoJuegosController {
-        @Autowired
+    @Autowired
     VideoJuegoService service;
 
     // CREATE

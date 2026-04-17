@@ -29,8 +29,18 @@ public class VideoJuegoService {
     }
 
     // READ - obtener por titulo
-    public VideoJuegos buscarPorTitulo(String titulo) {
-        return (VideoJuegos) repository.findByTitulo(titulo);
+    public List<VideoJuegos> buscarPorTitulo(String titulo) {
+        return repository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    // READ - obtener por autor
+    public List<VideoJuegos> buscarPorAutor(String autor) {
+        return repository.findByCreadorContainingIgnoreCase(autor);
+    }
+
+    // READ - obtener por autor
+    public List<VideoJuegos> buscarEntrePrecios(double min, double max){
+        return repository.findByPrecioBetween(min, max);
     }
 
     // UPDATE

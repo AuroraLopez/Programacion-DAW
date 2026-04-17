@@ -9,6 +9,11 @@ import com.example.proyectofinal.Model.VideoJuegos;
 
 @Repository
 public interface VideoJuegosReporsitory extends JpaRepository<VideoJuegos, Long> {
-    List<VideoJuegos> findByTitulo(String titulo);
+    List<VideoJuegos> findByTituloContainingIgnoreCase(String titulo);
+
+    List<VideoJuegos> findByCreadorContainingIgnoreCase(String creador);
+
+    List<VideoJuegos> findByPrecioBetween(double min, double max);
+
 }
 
