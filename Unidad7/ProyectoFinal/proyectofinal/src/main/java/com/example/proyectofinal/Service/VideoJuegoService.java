@@ -54,6 +54,7 @@ public class VideoJuegoService {
             existente.setMododejuego(videojuegoActualizado.getMododejuego());
             existente.setPegi(videojuegoActualizado.getPegi());
             existente.setPrecio(videojuegoActualizado.getPrecio());
+            existente.setUrl(videojuegoActualizado.getUrl());
             return repository.save(existente);
         }
         return null; // no existe

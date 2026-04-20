@@ -19,6 +19,7 @@ public class VideoJuegos {
     private String mododejuego;
     private String pegi;
     private double precio;
+    private String url;
     
     // Constructor por defecto
     public VideoJuegos(){
@@ -27,7 +28,7 @@ public class VideoJuegos {
 
     // Constructor con los campos
     public VideoJuegos(Long id, String titulo, String creador, Date fecha_lanzamiento, String genero,
-            String mododejuego, String pegi, double precio) {
+            String mododejuego, String pegi, double precio, String url) {
         this.id = id;
         this.titulo = titulo;
         this.creador = creador;
@@ -36,6 +37,7 @@ public class VideoJuegos {
         this.mododejuego = mododejuego;
         this.pegi = pegi;
         this.precio = precio;
+        this.url = url;
     }
 
     // Getter y Setter
@@ -102,4 +104,13 @@ public class VideoJuegos {
     public void setFecha_lanzamiento(Date fecha_lanzamiento) {
         this.fecha_lanzamiento = fecha_lanzamiento;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
 }

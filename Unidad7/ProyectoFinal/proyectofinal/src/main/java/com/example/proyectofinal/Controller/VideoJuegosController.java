@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.proyectofinal.Model.VideoJuegos;
 import com.example.proyectofinal.Service.VideoJuegoService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:8080") 
 @RestController ()
 @RequestMapping("/videojuegos")
 public class VideoJuegosController {
