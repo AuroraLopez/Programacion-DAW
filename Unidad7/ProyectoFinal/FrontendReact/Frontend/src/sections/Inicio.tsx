@@ -1,22 +1,9 @@
+import Navbar from "../ui/navbar";
+
 const Inicio = () => {
   return (
     <div style={{ background: "#080c14", color: "#e8eaf0", minHeight: "100vh", fontFamily: "sans-serif", padding: "0 2rem 3rem" }}>
-
-      {/* NAV */}
-      <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.2rem 0", borderBottom: "1px solid rgba(0,245,212,.1)", marginBottom: "3rem" }}>
-        <span style={{ fontWeight: 900, fontSize: "1.2rem", color: "#00f5d4", letterSpacing: 2 }}>
-          Pixel<span style={{ color: "#f72585" }}>Vault</span>
-        </span>
-        <div style={{ display: "flex", gap: "2rem" }}>
-          <a href="#" style={{ color: "#8892a4", textDecoration: "none", fontWeight: 600 }}>Juegos</a>
-          <a href="#" style={{ color: "#8892a4", textDecoration: "none", fontWeight: 600 }}>Ofertas</a>
-          <a href="#" style={{ color: "#8892a4", textDecoration: "none", fontWeight: 600 }}>Novedades</a>
-        </div>
-        <button style={{ background: "linear-gradient(135deg,#00f5d4,#7b2fff)", border: "none", borderRadius: 7, color: "#080c14", fontWeight: 700, padding: ".5rem 1.2rem", cursor: "pointer" }}>
-          🛒 Carrito
-        </button>
-      </nav>
-
+          <Navbar></Navbar>
       {/* HERO */}
       <section style={{ display: "flex", alignItems: "center", gap: "3rem", marginBottom: "4rem" }}>
         <div style={{ flex: 1 }}>
