@@ -1,15 +1,24 @@
-package Actividades.Actividad8.controlador;
+package Actividades.Actividad9.controlador;
 
+import Actividades.Actividad9.modelo.AlumnoDAO;
+import Actividades.Actividad9.modelo.AsignaturaDAO;
+import Actividades.Actividad9.modelo.Curso_EscolarDAO;
 import Actividades.Actividad9.modelo.MatriculaDAO;
 import Actividades.Actividad9.modelo.ProfesorDAO;
 import Actividades.Actividad9.vista.MatriculaView;
 
 public class MatriculaController {
+    private AlumnoDAO alumnodao;
+    private AsignaturaDAO asignaturadao;
+    private Curso_EscolarDAO cursoescolar;
     private ProfesorDAO profesordao;
     private MatriculaDAO matriculadao;
     private MatriculaView matriculaview;
 
-    public MatriculaController() {
+    public MatriculaController(){
+        alumnodao = new AlumnoDAO();
+        asignaturadao = new AsignaturaDAO();
+        cursoescolar = new Curso_EscolarDAO();
         profesordao = new ProfesorDAO();
         matriculadao = new MatriculaDAO();
         matriculaview = new MatriculaView();
@@ -29,7 +38,13 @@ public class MatriculaController {
                         matriculaview.mostrarMensaje("Actualizando profesor..."); break; 
                     case 4: profesordao.eliminar(matriculaview.pedirIdEliminar());
                         matriculaview.mostrarMensaje("Borrando profesor..."); break;
-                    case 5: matriculadao.insertar(matriculaview.pedirNuevaMatricula());
+                    case 5: asignaturadao.insertar(matriculaview.pedirNuevaAsignatura());
+                        matriculaview.mostrarMensaje("Añadiendo asignatura..."); break; 
+                    case 6: alumnodao.insertar(matriculaview.pedirNuevoAlumno());
+                        matriculaview.mostrarMensaje("Añadiendo alumno..."); break;
+                    case 7: cursoescolar.insertar(matriculaview.pedirNuevoCurso());
+                        matriculaview.mostrarMensaje("Añadiendo Nuevo Curso..."); break;
+                    case 8: matriculadao.insertar(matriculaview.pedirNuevaMatricula());
                         matriculaview.mostrarMensaje("Añadiendo matricula..."); break;
                     case 0: matriculaview.mostrarMensaje("Saliendo..."); break;
                     default: matriculaview.mostrarMensaje("Opción incorrecta"); break;

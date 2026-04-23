@@ -26,8 +26,8 @@ public class Juego extends JFrame implements ActionListener {
             return;
         }
         btn.setText(turnoX ? "X" : "O");
-        turnoX = true;
-        jugadaIA();
+        turnoX = !turnoX;
+        // jugadaIA();
         if (hayGanador()) {
             JOptionPane.showMessageDialog(null, "¡Hay ganador!");
             reiniciar();

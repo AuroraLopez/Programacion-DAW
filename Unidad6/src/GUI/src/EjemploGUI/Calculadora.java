@@ -25,8 +25,8 @@ public class Calculadora extends JFrame implements ActionListener {
         add(pantalla, BorderLayout.NORTH);
         // Panel de botones
         JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 5, 5, 5));
-        String[] botones = { "7", "8", "9", "/","p", "4", "5", "6", "*","p2", "1", "2", "3", "-","p3", "C", "0", "=", "+", "p4" };
+        panelBotones.setLayout(new GridLayout(4, 4, 5, 5));
+        String[] botones = { "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "C", "0", "=", "+", };
         for (String texto : botones) {
             JButton boton = new JButton(texto);
             boton.setFont(new Font("Arial", Font.BOLD, 18));
@@ -45,7 +45,7 @@ public class Calculadora extends JFrame implements ActionListener {
             pantalla.setText(pantalla.getText() + comando);
         }
         // Si es operación
-        else if (comando.matches("[+\\-*/\\p1\\p2\\p3\\p4\\]")) {
+        else if (comando.matches("[+\\-*/]")) {
             num1 = Double.parseDouble(pantalla.getText());
             operador = comando;
             pantalla.setText("");
@@ -71,8 +71,8 @@ public class Calculadora extends JFrame implements ActionListener {
                     }
                     resultado = num1 / num2;
                     break;
-                case "pow":
-                    resultado = Math.pow(num1, num2);
+                // case "pow":
+                //     resultado = Math.pow(num1, num2);
             }
             pantalla.setText(String.valueOf(resultado));
         }

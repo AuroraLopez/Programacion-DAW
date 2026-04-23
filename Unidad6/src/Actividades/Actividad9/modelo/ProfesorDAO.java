@@ -1,43 +1,46 @@
-package Actividades.Actividad8.modelo;
+package Actividades.Actividad9.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
 import Conexiones.ConexionAct8;
 
-public class Curso_EscolarDAO {
-    // READ (lista de curso_escolar)
-    public List<Curso_Escolar> listar() {
-        List<Curso_Escolar> cursoescolares = new ArrayList<>();
-        String sql = "SELECT id, año_inicio, año_fin FROM curso_escolar";
+
+public class ProfesorDAO {
+    // READ (lista de Profesor)
+    public List<Profesor> listar() {
+        List<Profesor> profesores = new ArrayList<>();
+        String sql = "SELECT id, nombre, apellido1, apellido2, especialidad, telefono FROM profesor";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                cursoescolares.add(new Curso_Escolar(rs.getInt("id"),
-                        Year.of(rs.getInt("año_inicio")),
-                        Year.of(rs.getInt("año_fin"))
+                profesores.add(new Profesor(rs.getInt("id"),
+                        rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"),
+                            rs.getString("especialidad"), rs.getString("telefono")
                          ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return cursoescolares;
+        return profesores;
     }
 
     // CREATE
-    public void insertar(Curso_Escolar c) {
-        String sql = "INSERT INTO curso_escolar (id, año_inicio, año_fin) VALUES (?, ?, ?)";
+    public void insertar(Profesor p) {
+        String sql = "INSERT INTO profesor (id, nombre, apellido1, apellido2, especialidad, telefono) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, c.getId());
-            ps.setInt(2, c.getAño_inicio().getValue());
-            ps.setInt(3, c.getAño_fin().getValue());
+            ps.setInt(1, p.getId());
+            ps.setString(2, p.getNombre());
+            ps.setString(3, p.getApellido1());
+            ps.setString(4, p.getApellido2());
+            ps.setString(5, p.getEspecialidad());
+            ps.setString(6, p.getTelefono());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,12 +48,12 @@ public class Curso_EscolarDAO {
     }
 
     // UPDATE
-    public void actualizar(Curso_Escolar c) {
-        String sql = "UPDATE curso_escolar SET año_inicio=? WHERE id=?";
+    public void actualizar(Profesor p) {
+        String sql = "UPDATE profesor SET nombre=? WHERE id=?";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, c.getAño_inicio().getValue());
-            ps.setInt(2, c.getId());
+            ps.setString(1, p.getNombre());
+            ps.setInt(2, p.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,7 +62,7 @@ public class Curso_EscolarDAO {
 
     // DELETE
     public void eliminar(int id) {
-        String sql = "DELETE FROM curso_escolar WHERE id=?";
+        String sql = "DELETE FROM profesor WHERE id=?";
         try (Connection conn = ConexionAct8.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);

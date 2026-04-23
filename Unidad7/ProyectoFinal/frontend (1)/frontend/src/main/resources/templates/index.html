@@ -1,53 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>GameVault - Catálogo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-900 text-gray-100">
+    <div th:replace="~{fragments/navbar.html :: menu}"></div>
 
-<body>
-    <div th:replace="~{fragments/navbar :: menu}"></div>
-    <div class="container mt-4">
-        <div class="row" id="contenedor-cards"></div>
-    </div>
-    
-    <div class="collapse" id="collapseExample">
-        <div class="row" id="contenedor-cards"></div>
-    </div>
+    <main class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Catálogo de Videojuegos</h2>
+        
+        <div class="bg-gray-800 p-4 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 border border-gray-700">
+            <div class="flex flex-col gap-1">
+                <label class="text-xs text-gray-400 ml-1">Título</label>
+                <input id="searchTitle" type="text" placeholder="Ej: Zelda..." class="bg-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="flex flex-col gap-1">
+                <label class="text-xs text-gray-400 ml-1">Creador</label>
+                <input id="searchAuthor" type="text" placeholder="Ej: Nintendo..." class="bg-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div class="flex flex-col gap-1">
+                <label class="text-xs text-gray-400 ml-1">Rango de Precio (€)</label>
+                <div class="flex gap-2">
+                    <input id="priceMin" type="number" placeholder="Min" class="bg-gray-700 p-2 rounded w-1/2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input id="priceMax" type="number" placeholder="Max" class="bg-gray-700 p-2 rounded w-1/2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+            <button onclick="aplicarFiltros()" class="bg-indigo-600 p-2 rounded hover:bg-indigo-500 md:col-span-3 font-bold transition">
+                Aplicar Filtros
+            </button>
+        </div>
+
+        <div id="game-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            </div>
+    </main>
 
     <script>
-        fetch("http://localhost:8082/videojuegos")
-            .then(res => res.json())
-            .then(data => {
+        // URL base de tu VideoJuegosController
+        const API_URL = "http://localhost:8082/videojuegos";
 
-                const contenedor = document.getElementById("contenedor-cards");
+        async function cargarJuegos(url = API_URL) {
+            try {
+                const res = await fetch(url);
+                const juegos = await res.json();
+                const grid = document.getElementById('game-grid');
+                
+                if (juegos.length === 0) {
+                    grid.innerHTML = '<p class="col-span-full text-center text-gray-500">No se encontraron videojuegos.</p>';
+                    return;
+                }
 
-                let html = "";
+                grid.innerHTML = juegos.map(j => {
+                    // Formatear la fecha (fecha_lanzamiento viene de Java sql.Date)
+                    const anio = j.fecha_lanzamiento ? new Date(j.fecha_lanzamiento).getFullYear() : 'N/A';
+                    
+                    return `
+                    <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 shadow-lg group">
+                        <div class="relative">
+                            <img src="${j.url || 'https://via.placeholder.com/400x500?text=No+Image'}" 
+                                 class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-xs px-2 py-1 rounded">
+                                ${j.pegi || 'TP'}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl truncate" title="${j.titulo}">${j.titulo}</h3>
+                            <p class="text-gray-400 text-sm mb-2">${j.creador} (${anio})</p>
+                            <div class="flex justify-between items-center border-t border-gray-700 pt-3 mt-1">
+                                <span class="text-indigo-400 font-black text-lg">${j.precio.toFixed(2)} €</span>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded text-gray-300 italic">${j.genero || 'Videojuego'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `}).join('');
+            } catch (error) {
+                console.error("Error al cargar juegos:", error);
+                document.getElementById('game-grid').innerHTML = '<p class="col-span-full text-center text-red-500">Error al conectar con el servidor.</p>';
+            }
+        }
 
-                data.forEach(juego => {
-                    html += `
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="card-body">
-              <img src=${juego.url} alt="">
-              <h5>${juego.titulo}</h5>
-              <p>${juego.creador}</p>
-              <p>${juego.precio}</p>
-            </div>
-          </div>
-        </div>
-      `;
-                });
+        function aplicarFiltros() {
+            const title = document.getElementById('searchTitle').value;
+            const author = document.getElementById('searchAuthor').value;
+            const min = document.getElementById('priceMin').value;
+            const max = document.getElementById('priceMax').value;
 
-                contenedor.innerHTML = html;
-            })
-            .catch(err => console.error(err));
-            console.log("JS cargado");
+            // Lógica según tus métodos de VideoJuegoService
+            if (title) {
+                // Endpoint sugerido: /videojuegos/buscar/titulo/{titulo}
+                cargarJuegos(`${API_URL}/buscar/titulo/${title}`);
+            } else if (author) {
+                // Endpoint sugerido: /videojuegos/buscar/autor/{autor}
+                cargarJuegos(`${API_URL}/buscar/autor/${author}`);
+            } else if (min && max) {
+                // Endpoint sugerido: /videojuegos/buscar/precios?min=X&max=Y
+                cargarJuegos(`${API_URL}/buscar/precios?min=${min}&max=${max}`);
+            } else {
+                cargarJuegos(API_URL);
+            }
+        }
+
+        // Carga inicial al abrir la página
+        window.onload = () => cargarJuegos();
     </script>
 </body>
-
 </html>

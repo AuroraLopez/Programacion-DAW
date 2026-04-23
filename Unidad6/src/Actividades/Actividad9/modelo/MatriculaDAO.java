@@ -1,4 +1,4 @@
-package Actividades.Actividad8.modelo;
+package Actividades.Actividad9.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

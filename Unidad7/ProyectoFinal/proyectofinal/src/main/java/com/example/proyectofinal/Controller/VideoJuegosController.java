@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.proyectofinal.Model.VideoJuegos;
@@ -19,8 +20,8 @@ import com.example.proyectofinal.Service.VideoJuegoService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:5173") 
-@RestController ()
+@CrossOrigin(origins = "http://localhost:8080")
+@RestController()
 @RequestMapping("/videojuegos")
 public class VideoJuegosController {
     @Autowired
@@ -41,10 +42,20 @@ public class VideoJuegosController {
         return service.listar();
     }
 
-    // READ - buscar por id
-    @GetMapping("/{id}")
-    public VideoJuegos buscar(@PathVariable int id) {
-        return service.buscarPorId(id);
+    // Añadir al Controller para que el buscador funcione
+    @GetMapping("/buscar/titulo/{titulo}")
+    public List<VideoJuegos> buscarPorTitulo(@PathVariable String titulo) {
+        return service.buscarPorTitulo(titulo);
+    }
+
+    @GetMapping("/buscar/autor/{autor}")
+    public List<VideoJuegos> buscarPorAutor(@PathVariable String autor) {
+        return service.buscarPorAutor(autor);
+    }
+
+    @GetMapping("/buscar/precios")
+    public List<VideoJuegos> buscarPorPrecios(@RequestParam double min, @RequestParam double max) {
+        return service.buscarEntrePrecios(min, max);
     }
 
     // UPDATE

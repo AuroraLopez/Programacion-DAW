@@ -386,9 +386,9 @@ public class Tarea extends javax.swing.JFrame {
         jTextPane3.setText("");
         jCheckBox1.setSelected(false);
         buttonGroup2.clearSelection();
-        jComboBox1.setSelectedItem(0);
-        jComboBox2.setSelectedItem(0);
-        jComboBox3.setSelectedItem(0);
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
         jTextArea2.setText("");
     }
 

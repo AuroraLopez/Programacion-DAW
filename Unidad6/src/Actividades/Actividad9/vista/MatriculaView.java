@@ -1,4 +1,4 @@
-package Actividades.Actividad8.vista;
+package Actividades.Actividad9.vista;
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +21,10 @@ public class MatriculaView {
         System.out.println("2. Insertar profesor");
         System.out.println("3. Actualizar profesor");
         System.out.println("4. Eliminar profesor");
-        System.out.println("5. Insertar matricula");
+        System.out.println("5. Insertar asignatura");
+        System.out.println("6. Insertar Alumno");
+        System.out.println("7. Insertar curso escolar");
+        System.out.println("8. Insertar matricula");
         System.out.println("0. Salir");
         System.out.print("Opción: ");
         return sc.nextInt();
@@ -71,6 +74,51 @@ public class MatriculaView {
 
     public void mostrarMensaje(String msg) {
         System.out.println(msg);
+    }
+
+    public Asignatura pedirNuevaAsignatura() {
+        System.out.print("Código: ");
+        int id=sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Número de horas: ");
+        int num_horas = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Id_profesor: ");
+        int id_profesor = sc.nextInt();
+        sc.nextLine();
+        return new Asignatura(id, nombre,num_horas,id_profesor);
+    }
+
+    public Alumno pedirNuevoAlumno() {
+        sc.nextLine();
+        System.out.print("Id: ");
+        int id=sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Apellido 1: ");
+        String apellido1 = sc.nextLine();
+        System.out.print("Apellido 2: ");
+        String apellido2 = sc.nextLine();
+        System.out.print("Fecha de nacimiento (aaaa-MM-dd): ");
+        Date fecha =  Date.valueOf (sc.nextLine());
+        System.out.print("Teléfono: ");
+        String telefono = sc.nextLine();
+        return new Alumno(id, nombre, apellido1, apellido2, fecha, telefono);
+    }
+
+    public Curso_Escolar pedirNuevoCurso() {
+        sc.nextLine();
+        System.out.print("Id: ");
+        int id=sc.nextInt();
+        sc.nextLine();
+        System.out.print("Año_inicio: ");
+        Year año_inicio = Year.of(sc.nextInt()); 
+        System.out.print("Año_fin: ");
+        Year fecha_fin = Year.of(sc.nextInt());
+        return new Curso_Escolar(id, año_inicio, fecha_fin);
     }
 
     public Matricula pedirNuevaMatricula() {
