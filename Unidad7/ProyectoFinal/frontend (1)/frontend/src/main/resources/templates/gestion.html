@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div th:replace="~{fragments/navbar.html :: menu}"></div>
+    <table class="table-auto">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Creador</th>
+      <th>Fecha de lanzamiento</th>
+      <th>Género</th>
+      <th>Modo de juego</th>
+      <th>Pegi</th>
+      <th>Precio</th>
+      <th>Url</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="api_data">
+  </tbody>
+</table>
+<script>
+        // URL base de tu VideoJuegosController
+        const API_URL = "http://localhost:8082/videojuegos";
+
+        async function cargarJuegos(url = API_URL) {
+            try {
+                const res = await fetch(url);
+                const juegos = await res.json();
+                const tabledata = document.getElementById('api_data');
+                
+                tabledata.innerHTML = juegos.map(j => {                  
+                    return `
+                     <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-gray-900">${j.titulo}</td>
+                            <td class="px-6 py-4">${j.creador}</td>
+                            <td class="px-6 py-4">${j.fecha_lanzamiento}</td>
+                            <td class="px-6 py-4">${j.genero}</td>
+                            <td class="px-6 py-4">${j.mododejuego}</td>
+                            <td class="px-6 py-4">${j.pegi}</td>
+                            <td class="px-6 py-4">${j.precio}</td>
+                            <td class="px-6 py-4">${j.url}</td>
+                        </tr>
+                `}).join('');
+            } catch (error) {
+                console.error("Error al cargar juegos:", error);
+                document.getElementById('api_data').innerHTML = '<p class="col-span-full text-center text-red-500">Error al conectar con el servidor.</p>';
+            }
+        }
+         // Carga inicial al abrir la página
+        window.onload = () => cargarJuegos();
+</script>
+</body>
+</html>

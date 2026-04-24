@@ -9,4 +9,12 @@ public class Prueba {
     public String home(){
         return "index";
     }
+    @GetMapping("/ediccion")
+    public String ediccion(){
+        return "gestion";
+    }
+    @GetMapping("/cv")
+    public String cv(){
+        return "cv";
+    }
 }
