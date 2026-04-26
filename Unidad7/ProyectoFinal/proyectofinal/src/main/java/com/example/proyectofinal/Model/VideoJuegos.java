@@ -9,7 +9,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class VideoJuegos {
+    // Lo marca como clave primaria al siguiente atributo
     @Id
+    // Y se autonumera solo
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;

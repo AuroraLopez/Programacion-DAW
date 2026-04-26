@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoMarket</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #4f46e5 0%, #111827 50%);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+     
+    <div th:replace="~{fragments/navbar.html :: menu}"></div>
+
+    <header class="relative hero-gradient h-[80vh] flex items-center shadow-2xl">
+        <img src="https://universidadeuropea.com/resources/media/images/tipos-videojuegos-800x450.width-1200.format-webp.webp" alt="">
+        <div class="container mx-auto px-6 text-center md:text-left">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+                    Tu santuario de <span class="text-indigo-400">Videojuegos</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+                    Gestiona tu colección, explora nuevos mundos y mantén al día tu biblioteca personal con la herramienta definitiva para gamers.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+                    <a th:href="@{/catalogo}" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                        Ver Catálogo
+                    </a>
+                    <a th:href="@{/ediccion}" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-lg border border-gray-600 transition duration-300">
+                        Gestionar Inventario
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 uppercase tracking-widest text-indigo-400">¿Por qué usar VideoMarket?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition shadow-lg group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🚀</div>
+                    <h3 class="text-xl font-bold mb-2">Rápido y Fluido</h3>
+                    <p class="text-gray-400 text-sm">Interfaz optimizada para que accedas a tus juegos sin esperas ni complicaciones.</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition shadow-lg group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                    <h3 class="text-xl font-bold mb-2">Control Total</h3>
+                    <p class="text-gray-400 text-sm">Añade, edita o elimina títulos de tu base de datos de forma intuitiva.</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-indigo-500 transition shadow-lg group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🔒</div>
+                    <h3 class="text-xl font-bold mb-2">Organización</h3>
+                    <p class="text-gray-400 text-sm">Clasifica por géneros, creadores o precios para encontrar siempre lo que buscas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-950 py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 VideoMarket Project. Desarrollado con ❤️ para amantes de los videojuegos.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

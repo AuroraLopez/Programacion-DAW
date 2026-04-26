@@ -3,58 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>VideoMarket</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-gray-100">
     <div th:replace="~{fragments/navbar.html :: menu}"></div>
-    <table class="table-auto">
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Creador</th>
-      <th>Fecha de lanzamiento</th>
-      <th>Género</th>
-      <th>Modo de juego</th>
-      <th>Pegi</th>
-      <th>Precio</th>
-      <th>Url</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="api_data">
-  </tbody>
-</table>
-<script>
-        // URL base de tu VideoJuegosController
+
+    <main class="container mx-auto p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-indigo-400">Administración de Inventario</h2>
+            <button onclick="abrirModal()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded transition">
+                + Añadir Videojuego
+            </button>
+        </div>
+
+        <div class="overflow-x-auto shadow-xl rounded-lg border border-gray-700">
+            <table class="w-full text-sm text-left text-gray-300">
+                <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3">Título</th>
+                        <th class="px-6 py-3">Creador</th>
+                        <th class="px-6 py-3">Fecha</th>
+                        <th class="px-6 py-3">Género</th>
+                        <th class="px-6 py-3">Modo</th>
+                        <th class="px-6 py-3">Pegi</th>
+                        <th class="px-6 py-3">Precio</th>
+                        <th class="px-6 py-3 text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="api_data" class="divide-y divide-gray-700">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="modalForm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-2xl border border-gray-600">
+            <h3 id="modalTitle" class="text-xl font-bold mb-4 text-indigo-400">Añadir Videojuego</h3>
+            <form id="gameForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="hidden" id="gameId">
+                <input type="text" id="titulo" placeholder="Título" class="bg-gray-700 p-2 rounded border border-gray-600 focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                <input type="text" id="creador" placeholder="Creador" class="bg-gray-700 p-2 rounded border border-gray-600 focus:ring-2 focus:ring-indigo-500 outline-none" required>
+                <input type="date" id="fecha_lanzamiento" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none" required>
+                <input type="text" id="genero" placeholder="Género" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none">
+                <input type="text" id="mododejuego" placeholder="Modo de juego" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none">
+                <input type="text" id="pegi" placeholder="PEGI" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none">
+                <input type="number" step="0.01" id="precio" placeholder="Precio" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none" required>
+                <input type="text" id="url" placeholder="URL de imagen" class="bg-gray-700 p-2 rounded border border-gray-600 outline-none md:col-span-2">
+                
+                <div class="md:col-span-2 flex justify-end gap-2 mt-4">
+                    <button type="button" onclick="cerrarModal()" class="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded font-bold">Cancelar</button>
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded font-bold">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
         const API_URL = "http://localhost:8082/videojuegos";
 
-        async function cargarJuegos(url = API_URL) {
+        // Cargar lista
+        async function cargarJuegos() {
             try {
+                // Realiza la petición GET al backend
                 const res = await fetch(url);
+
+                // Convierte la respuesta JSON en un array de objetos JavaScript
                 const juegos = await res.json();
+
+                // Seleccionamos la tabla donde se mostrarán los videojuegos
                 const tabledata = document.getElementById('api_data');
                 
-                tabledata.innerHTML = juegos.map(j => {                  
-                    return `
-                     <tr class="bg-white border-b hover:bg-gray-50">
-                            <td class="px-6 py-4 font-medium text-gray-900">${j.titulo}</td>
-                            <td class="px-6 py-4">${j.creador}</td>
-                            <td class="px-6 py-4">${j.fecha_lanzamiento}</td>
-                            <td class="px-6 py-4">${j.genero}</td>
-                            <td class="px-6 py-4">${j.mododejuego}</td>
-                            <td class="px-6 py-4">${j.pegi}</td>
-                            <td class="px-6 py-4">${j.precio}</td>
-                            <td class="px-6 py-4">${j.url}</td>
-                        </tr>
-                `}).join('');
+                // Recorremos cada videojuego y generamos su tarjeta HTML
+                tabledata.innerHTML = juegos.map(j => `
+                    <tr class="bg-gray-800 border-b border-gray-700 hover:bg-gray-700 transition">
+                        <td class="px-6 py-4 font-medium text-white">${j.titulo}</td>
+                        <td class="px-6 py-4">${j.creador}</td>
+                        <td class="px-6 py-4">${j.fecha_lanzamiento || '-'}</td>
+                        <td class="px-6 py-4">${j.genero || '-'}</td>
+                        <td class="px-6 py-4">${j.mododejuego || '-'}</td>
+                        <td class="px-6 py-4 text-center">${j.pegi || '-'}</td>
+                        <td class="px-6 py-4 font-bold text-green-400">${j.precio} €</td>
+                        <td class="px-6 py-4 text-center flex justify-center gap-2">
+                            <button onclick='prepararEdicion(${JSON.stringify(j)})' class="text-blue-400 hover:text-blue-300 font-bold">Editar</button>
+                            <button onclick="eliminarJuego(${j.id})" class="text-red-400 hover:text-red-300 font-bold">Eliminar</button>
+                        </td>
+                    </tr>
+                `).join('');
             } catch (error) {
-                console.error("Error al cargar juegos:", error);
-                document.getElementById('api_data').innerHTML = '<p class="col-span-full text-center text-red-500">Error al conectar con el servidor.</p>';
+                console.error("Error:", error);
             }
         }
+
+        // Crear o Actualizar (POST o PUT)
+        document.getElementById('gameForm').onsubmit = async (e) => {
+            e.preventDefault();
+
+            // Si hay ID → edición
+            const id = document.getElementById('gameId').value;
+            
+            // Creamos objeto videojuego
+            const juego = {
+                titulo: document.getElementById('titulo').value,
+                creador: document.getElementById('creador').value,
+                fecha_lanzamiento: document.getElementById('fecha_lanzamiento').value,
+                genero: document.getElementById('genero').value,
+                mododejuego: document.getElementById('mododejuego').value,
+                pegi: document.getElementById('pegi').value,
+                precio: parseFloat(document.getElementById('precio').value),
+                url: document.getElementById('url').value
+            };
+
+            // Si existe la id hace el post y el put
+            const method = id ? 'PUT' : 'POST';
+
+            // Usando la url y dicha id
+            const url = id ? `${API_URL}/${id}` : API_URL;
+
+            try {
+                await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(juego)
+                });
+                cerrarModal();
+                cargarJuegos();
+            } catch (error) {
+                alert("Error al guardar el videojuego");
+            }
+        };
+
+        // Eliminar (DELETE)
+        async function eliminarJuego(id) {
+            if(confirm("¿Estás seguro de que deseas eliminar este videojuego?")) {
+                try {
+                    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                    cargarJuegos();
+                } catch (error) {
+                    alert("Error al eliminar");
+                }
+            }
+        }
+
+        // Funciones de UI para el Modal, lo abre y resetea los valores
+        function abrirModal() {
+            document.getElementById('gameForm').reset();
+            document.getElementById('gameId').value = "";
+            document.getElementById('modalTitle').innerText = "Añadir Videojuego";
+            document.getElementById('modalForm').classList.remove('hidden');
+        }
+
+        // Simplemente esconde el apartado con el elemento hidden
+        function cerrarModal() {
+            document.getElementById('modalForm').classList.add('hidden');
+        }
+
+        // Iguala los datos a la edición para proceder a actualizar
+        function prepararEdicion(juego) {
+            abrirModal();
+            document.getElementById('modalTitle').innerText = "Editar Videojuego";
+            document.getElementById('gameId').value = juego.id;
+            document.getElementById('titulo').value = juego.titulo;
+            document.getElementById('creador').value = juego.creador;
+            document.getElementById('fecha_lanzamiento').value = juego.fecha_lanzamiento;
+            document.getElementById('genero').value = juego.genero;
+            document.getElementById('mododejuego').value = juego.mododejuego;
+            document.getElementById('pegi').value = juego.pegi;
+            document.getElementById('precio').value = juego.precio;
+            document.getElementById('url').value = juego.url;
+        }
+
          // Carga inicial al abrir la página
-        window.onload = () => cargarJuegos();
-</script>
+        window.onload = cargarJuegos;
+    </script>
 </body>
 </html>

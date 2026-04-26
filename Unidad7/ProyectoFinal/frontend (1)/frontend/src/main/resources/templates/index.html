@@ -2,14 +2,19 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Game</title>
+    <title>VideoMarket</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-gray-100">
     <div th:replace="~{fragments/navbar.html :: menu}"></div>
 
     <main class="container mx-auto p-6">
-        <h2 class="text-3xl font-bold mb-6">Game</h2>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold mb-6">Catálogo</h2>
+            <a th:href="@{/ediccion}" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded transition inline-block">
+                + Gestionar Videojuegos
+            </a>
+        </div>
         
         <div class="bg-gray-800 p-4 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 border border-gray-700">
             <div class="flex flex-col gap-1">
@@ -33,28 +38,32 @@
         </div>
 
         <div id="game-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            </div>
+        
+        </div>
     </main>
 
     <script>
-        // URL base de tu VideoJuegosController
+        // Guardamos el URL base del backend con los json en una variable
         const API_URL = "http://localhost:8082/videojuegos";
 
+        // Función asincrona para hacer un fetch de la url anterior guardada
         async function cargarJuegos(url = API_URL) {
             try {
+                // Realiza la petición GET al backend
                 const res = await fetch(url);
+
+                // Convierte la respuesta JSON en un array de objetos JavaScript
                 const juegos = await res.json();
+
+                // Seleccionamos el contenedor donde se mostrarán los videojuegos
                 const grid = document.getElementById('game-grid');
                 
-                if (juegos.length === 0) {
-                    grid.innerHTML = '<p class="col-span-full text-center text-gray-500">No se encontraron videojuegos.</p>';
-                    return;
-                }
-
+                // Recorremos cada videojuego y generamos su tarjeta HTML
                 grid.innerHTML = juegos.map(j => {
                     // Formatear la fecha (fecha_lanzamiento viene de Java sql.Date)
                     const anio = j.fecha_lanzamiento ? new Date(j.fecha_lanzamiento).getFullYear() : 'N/A';
                     
+                    // Devolvemos las tarjetas con los datos de la api
                     return `
                     <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 shadow-lg group">
                         <div class="relative">
@@ -82,20 +91,18 @@
         }
 
         function aplicarFiltros() {
+            // Obtenemos los valores escritos por el usuario
             const title = document.getElementById('searchTitle').value;
             const author = document.getElementById('searchAuthor').value;
             const min = document.getElementById('priceMin').value;
             const max = document.getElementById('priceMax').value;
 
-            // Lógica según tus métodos de VideoJuegoService
+            // Usamos los mapping de los controler del backend para hacer el filtrado
             if (title) {
-                // Endpoint sugerido: /videojuegos/buscar/titulo/{titulo}
                 cargarJuegos(`${API_URL}/buscar/titulo/${title}`);
             } else if (author) {
-                // Endpoint sugerido: /videojuegos/buscar/autor/{autor}
                 cargarJuegos(`${API_URL}/buscar/autor/${author}`);
             } else if (min && max) {
-                // Endpoint sugerido: /videojuegos/buscar/precios?min=X&max=Y
                 cargarJuegos(`${API_URL}/buscar/precios?min=${min}&max=${max}`);
             } else {
                 cargarJuegos(API_URL);

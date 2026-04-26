@@ -10,40 +10,41 @@ import com.example.proyectofinal.Repository.VideoJuegosReporsitory;
 
 @Service
 public class VideoJuegoService {
+    // Inyectamos de forma automática la clase Repositorio para no crear el objeto
     @Autowired
     private VideoJuegosReporsitory repository;
 
-    // CREATE
+    // Guarda un nuevo videojuego en la base de datos
     public VideoJuegos crear(VideoJuegos videojuego) {
         return repository.save(videojuego); // JPA asigna ID automáticamente
     }
 
-    // READ - obtener todos
+    // Devuelve la lista completa de videojuegos
     public List<VideoJuegos> listar() {
         return repository.findAll();
     }
 
-    // READ - obtener por id
+    // Busca un videojuego por su ID
     public VideoJuegos buscarPorId(long id) {
         return repository.findById(id).orElse(null);
     }
 
-    // READ - obtener por titulo
+    // Busca videojuegos por titulo sin portar mayusculas
     public List<VideoJuegos> buscarPorTitulo(String titulo) {
         return repository.findByTituloContainingIgnoreCase(titulo);
     }
 
-    // READ - obtener por autor
+    // Busca videojuegos por creador sin portar mayusculas
     public List<VideoJuegos> buscarPorAutor(String autor) {
         return repository.findByCreadorContainingIgnoreCase(autor);
     }
 
-    // READ - obtener por autor
+    // Busca videojuegos por medio de dos precios
     public List<VideoJuegos> buscarEntrePrecios(double min, double max){
         return repository.findByPrecioBetween(min, max);
     }
 
-    // UPDATE
+    // Actualiza los videojuegos guardandolos previamente en una lista encontrandolos por id
     public VideoJuegos actualizar(long id, VideoJuegos videojuegoActualizado) {
         VideoJuegos existente = repository.findById(id).orElse(null);
         if (existente != null) {
@@ -60,9 +61,10 @@ public class VideoJuegoService {
         return null; // no existe
     }
 
-    // DELETE
+    // Elimina usando el id para borrar
     public String eliminar(long id) {
         VideoJuegos existente = repository.findById(id).orElse(null);
+        // Condición para ver si existe
         if (existente != null) {
             repository.deleteById(id);
             return "Producto " + id + " eliminado";

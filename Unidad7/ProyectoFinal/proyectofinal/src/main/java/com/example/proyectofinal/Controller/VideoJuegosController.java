@@ -20,17 +20,22 @@ import com.example.proyectofinal.Service.VideoJuegoService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+// Permitimos el acceso al frontend
 @CrossOrigin(origins = "http://localhost:8080")
+// Lo indicamos como controlador Rest (devuelve datos json)
 @RestController()
+// Indicamos donde responden los datos json
 @RequestMapping("/videojuegos")
 public class VideoJuegosController {
+    // Inyectamos de forma automática la clase Servicio para no crear el objeto
     @Autowired
     VideoJuegoService service;
 
-    // CREATE
+    // Para poder crear objetos persona
     @PostMapping
     public ResponseEntity<VideoJuegos> crear(@RequestBody VideoJuegos videojuego) {
-        VideoJuegos creado = service.crear(videojuego);
+        VideoJuegos creado = service.crear(videojuego); // Para que se inserten en la base de datos
+        // Devuelve una respuest http
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(creado);
@@ -42,32 +47,36 @@ public class VideoJuegosController {
         return service.listar();
     }
 
-    // Añadir al Controller para que el buscador funcione
+    // Función para buscar por titulo
     @GetMapping("/buscar/titulo/{titulo}")
     public List<VideoJuegos> buscarPorTitulo(@PathVariable String titulo) {
         return service.buscarPorTitulo(titulo);
     }
 
+    // Función para buscar por autor
     @GetMapping("/buscar/autor/{autor}")
     public List<VideoJuegos> buscarPorAutor(@PathVariable String autor) {
         return service.buscarPorAutor(autor);
     }
 
+    // Función para buscar por precios
     @GetMapping("/buscar/precios")
     public List<VideoJuegos> buscarPorPrecios(@RequestParam double min, @RequestParam double max) {
         return service.buscarEntrePrecios(min, max);
     }
 
-    // UPDATE
+    // Función para actualizar
     @PutMapping("/{id}")
     public VideoJuegos actualizar(
+            // Obtiene la id
             @PathVariable int id,
+            // Obtiene todo el contino del json 
             @RequestBody VideoJuegos videojuego) {
-
+            // Llama a la función de servicio para actualizar
         return service.actualizar(id, videojuego);
     }
 
-    // DELETE
+    // Función para borrar con la id
     @DeleteMapping("/{id}")
     public String eliminar(@PathVariable int id) {
         return service.eliminar(id);
